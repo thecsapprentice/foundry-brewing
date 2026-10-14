@@ -15,6 +15,7 @@ const suites = [
   ["test-safety.mjs", {}],
   ["test-drop.mjs", {}],
   ["test-forage.mjs", {}],
+  ["test-names.mjs", {}],
   ["test-libwrapper.mjs", { WITH_LIBWRAPPER: "1" }],
   ["test-libwrapper.mjs", { WITH_LIBWRAPPER: "0" }],
 ];

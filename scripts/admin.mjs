@@ -3,6 +3,7 @@ import { KEG_NAME, KEG_IMG, TABLE_NAMES, FLAG_TABLES, FLAG_SKIN, SLOT_LABEL, BRE
 import { esc, ingKey, tableRange, rollOn, rollWithExtras, allTables, resolveTable, buttonDialog, readForm, titleCase, acceptItemDrop } from "./util.mjs";
 import { newKegData, kegFromTemplate, isKeg, skinOf, kegContents, kegDescription, DEFAULT_SKIN, SKIN_FIELDS } from "./keg.mjs";
 import { getRecipes, setRecipes, slotDisplay } from "./book.mjs";
+import { nameStyles } from "./names.mjs";
 
 const gmOnly = () => {
   if (game.user.isGM) return true;
@@ -290,6 +291,7 @@ export async function reskinKeg(keg = null) {
   keg ??= await pickKeg();
   if (!keg) return;
   const skin = skinOf(keg);
+  const styles = await nameStyles();
   const val = (v) => (v === undefined || v === null ? "" : esc(v));
   const sys = keg.system;
   const content = (cur, error) => `
@@ -310,6 +312,8 @@ export async function reskinKeg(keg = null) {
   </fieldset>
   <fieldset><legend>Wording</legend>
     ${WORDING.map(([k, label, hint]) => `<div class="form-group"><label>${label}</label><input type="text" name="${k}" value="${val(cur[k])}" placeholder="${esc(DEFAULT_SKIN[k])}" title="${esc(hint)}"></div>`).join("")}
+    <div class="form-group"><label>Name style</label><select name="nameStyle">${[...new Set([...styles, cur.nameStyle].filter(Boolean))].map((st) => `<option value="${esc(st)}" ${st === cur.nameStyle ? "selected" : ""}>${esc(st)}</option>`).join("")}</select>
+      <p class="hint">The last word of automatic brew names, from the <em>Brew Name Style: …</em> table of that name (e.g. IPA, Elixir, Tisane).</p></div>
     <div class="form-group"><label>Drink activity icon</label><input type="text" name="drinkImg" value="${val(cur.drinkImg)}" placeholder="${esc(DEFAULT_SKIN.drinkImg)}"><button type="button" data-pick="drinkImg" style="flex:0 0 2em" title="Browse"><i class="fas fa-file-image"></i></button></div>
   </fieldset>
 </form>`;

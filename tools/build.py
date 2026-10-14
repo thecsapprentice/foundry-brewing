@@ -51,6 +51,67 @@ def build_tables():
     return entries
 
 
+# ---------------------------------------------------------------- brew-name tables
+NAME_TABLE_HELP = {
+    "theme": ("<p>A <strong>theme</strong> for Microbrew's automatic brew names. Each line is <code>Kind: Word</code>.</p>"
+              "<ul><li><code>Biome: …</code> an ingredient from this biome votes 2 for this theme.</li>"
+              "<li><code>Keyword: …</code> an ingredient whose name contains this text votes 1.</li>"
+              "<li><code>Place:</code>, <code>Person:</code>, <code>Adjective:</code>, <code>Force:</code> words used in names.</li>"
+              "<li><code>Fallback: yes</code> use this theme when no ingredient matches any theme.</li></ul>"
+              "<p>Add your own theme by creating a world table named <em>Brew Name Theme: Something</em>. "
+              "A world table with the same name as one in this compendium replaces it.</p>"),
+    "moods": ("<p>Mood words for brew names, chosen from the brew's effects. Lines are <code>Good Adjective: …</code>, <code>Good Feeling: …</code>, "
+              "and the same for <code>Bad</code> and <code>Mixed</code>.</p>"),
+    "adventurers": "<p>Generic people for brew names (<code>{Adventurer}</code>). One word or name per line.</p>",
+    "patterns": ("<p>Name patterns. A pattern is picked by weight, then filled in:</p>"
+                 "<ul><li><code>{Place}</code> <code>{Person}</code> <code>{Adjective}</code> <code>{Force}</code> from the brew's theme</li>"
+                 "<li><code>{Mood}</code> <code>{Feeling}</code> from its effects</li><li><code>{Adventurer}</code> generic people</li>"
+                 "<li><code>{Style}</code> from the Keg's name style</li><li><code>{Ingredient}</code> <code>{Ingredient2}</code> the ingredients</li></ul>"
+                 "<p>Names longer than four words are skipped. Change a line's weight to make it more or less common.</p>"),
+    "style": ("<p>A <strong>name style</strong> (the last word of a brew's name). Choose a Keg's style with <em>Microbrew: Reskin a Keg</em>. "
+              "Add your own by creating a world table named <em>Brew Name Style: Something</em>.</p>"),
+}
+
+def name_table(name, kind, lines):
+    """lines: list of text or (text, weight). Ranges are cumulative so a normal draw respects the weights."""
+    tid = stable_id("nametable", name)
+    entries, rids, start = [], [], 1
+    for i, line in enumerate(lines):
+        text, w = (line if isinstance(line, tuple) else (line, 1))
+        rid = stable_id("nameresult", name, str(i), text)
+        rids.append(rid)
+        entries.append((f"!tables.results!{tid}.{rid}", {
+            "_id": rid, "type": "text", "text": text, "img": None, "weight": w, "range": [start, start + w - 1], "drawn": False,
+            "documentCollection": "", "documentId": None, "flags": {}, "_stats": STATS,
+        }))
+        start += w
+    entries.append((f"!tables!{tid}", {
+        "_id": tid, "name": name, "img": "icons/sundries/scrolls/scroll-bound-orange-tan.webp", "description": NAME_TABLE_HELP[kind],
+        "results": rids, "formula": f"1d{start - 1}", "replacement": True, "displayRoll": False,
+        "folder": None, "sort": 0, "ownership": {"default": 0}, "flags": {}, "_stats": STATS,
+    }))
+    return entries
+
+def build_name_tables():
+    spec = importlib.util.spec_from_file_location("names", ROOT / "data/names.py")
+    N = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(N)
+    entries = []
+    for theme, t in N.THEMES.items():
+        lines = [f"Biome: {b}" for b in t["biome"]] + [f"Keyword: {k}" for k in t["keyword"]]
+        if t.get("fallback"):
+            lines.append("Fallback: yes")
+        for kind in ("place", "person", "adjective", "force"):
+            lines += [f"{kind.capitalize()}: {w}" for w in t[kind]]
+        entries += name_table(f"Brew Name Theme: {theme}", "theme", lines)
+    entries += name_table("Brew Name Moods", "moods", [f"{k}: {w}" for k, ws in N.MOODS.items() for w in ws])
+    entries += name_table("Brew Name Adventurers", "adventurers", N.ADVENTURERS)
+    entries += name_table("Brew Name Patterns", "patterns", N.PATTERNS)
+    for style, words in N.STYLES.items():
+        entries += name_table(f"Brew Name Style: {style}", "style", words)
+    return entries
+
+
 # ---------------------------------------------------------------- items
 def load_icons():
     spec = importlib.util.spec_from_file_location("icons", ROOT / "data/icons.py")
@@ -206,9 +267,11 @@ def main():
     items, n_herbs = build_items()
     items += build_keg()
     macros = build_macros()
+    names = build_name_tables()
     write_pack("microbrew-tables", tables, ldbpack)
     write_pack("microbrew-items", items, ldbpack)
     write_pack("microbrew-macros", macros, ldbpack)
+    write_pack("microbrew-names", names, ldbpack)
 
     raw = f"https://raw.githubusercontent.com/{owner}/{repo}/{args.branch}"
     manifest = {
@@ -232,10 +295,12 @@ def main():
              "ownership": {"PLAYER": "LIMITED", "ASSISTANT": "OWNER"}},
             {"name": "microbrew-items", "label": "Microbrew: Kegs & Ingredients", "path": "packs/microbrew-items", "type": "Item", "system": "dnd5e",
              "ownership": {"PLAYER": "OBSERVER", "ASSISTANT": "OWNER"}},
+            {"name": "microbrew-names", "label": "Microbrew: Brew Names", "path": "packs/microbrew-names", "type": "RollTable",
+             "ownership": {"PLAYER": "LIMITED", "ASSISTANT": "OWNER"}},
             {"name": "microbrew-macros", "label": "Microbrew: DM Tools", "path": "packs/microbrew-macros", "type": "Macro",
              "ownership": {"PLAYER": "NONE", "ASSISTANT": "OWNER"}},
         ],
-        "packFolders": [{"name": "Microbrew", "sorting": "m", "packs": ["microbrew-tables", "microbrew-items", "microbrew-macros"]}],
+        "packFolders": [{"name": "Microbrew", "sorting": "m", "packs": ["microbrew-tables", "microbrew-items", "microbrew-names", "microbrew-macros"]}],
         "languages": [],
         "url": f"https://github.com/{owner}/{repo}",
         "manifest": f"{raw}/module.json",
@@ -257,7 +322,7 @@ def main():
                     z.write(p, p.relative_to(ROOT).as_posix())
         if (ROOT / "README.md").exists():
             z.write(ROOT / "README.md", "README.md")
-    print(f"tables: {len(tables)} entries | items: {n_herbs} ingredients + keg | macros: {len(macros)}")
+    print(f"name tables: {sum(1 for k, _ in names if k.startswith('!tables!'))} | tables: {len(tables)} entries | items: {n_herbs} ingredients + keg | macros: {len(macros)}")
     print(f"module.json v{args.version} -> {manifest['manifest']}")
     print(f"{zpath.relative_to(ROOT)}: {zpath.stat().st_size // 1024} KB")
 

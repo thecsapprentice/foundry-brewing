@@ -24,6 +24,7 @@ export const DEFAULT_SKIN = Object.freeze({
   brewVerb: "brews",         // "Pip brews Mint, Ash, Honey into a fresh keg"
   drinkVerb: "drinks",       // "Bram drinks Old Faithful"
   drinkImg: ALE_IMG,
+  nameStyle: "Ale",          // which "Brew Name Style: …" table automatic names end with
 });
 export const SKIN_FIELDS = Object.keys(DEFAULT_SKIN);
 

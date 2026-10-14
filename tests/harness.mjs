@@ -39,7 +39,7 @@ function readPack(name) {
     fs.rmSync(tmp, { recursive: true, force: true });
   }
 }
-export const packData = { tables: readPack("microbrew-tables"), items: readPack("microbrew-items"), macros: readPack("microbrew-macros") };
+export const packData = { tables: readPack("microbrew-tables"), items: readPack("microbrew-items"), macros: readPack("microbrew-macros"), names: readPack("microbrew-names") };
 
 function mkTable(d, results, pack = null) {
   const t = { ...d, id: d._id, documentName: "RollTable", pack, uuid: pack ? `Compendium.${pack}.RollTable.${d._id}` : `RollTable.${d._id}`,
@@ -166,7 +166,17 @@ export function installGlobals({ actors, worldItems = [], worldTables = [], user
       return e;
     }),
   };
-  const packs = coll([tablePack, itemPack]);
+  const nameTables = (() => {
+    const res = Object.fromEntries(packData.names.filter(([k]) => k.startsWith("!tables.results!")).map(([k, v]) => [k.split("!")[2], v]));
+    return packData.names.filter(([k]) => k.startsWith("!tables!")).map(([, d]) => mkTable(d, d.results.map((rid) => res[`${d._id}.${rid}`]), "microbrew.microbrew-names"));
+  })();
+  const namesPack = {
+    collection: "microbrew.microbrew-names", documentName: "RollTable", title: "Microbrew: Brew Names",
+    getIndex: async () => nameTables.map((t) => ({ _id: t._id, name: t.name, uuid: t.uuid })),
+    getDocuments: async () => nameTables,
+    getDocument: async (id) => nameTables.find((t) => t._id === id),
+  };
+  const packs = coll([tablePack, itemPack, namesPack]);
   packs.get = (c) => packs.find((p) => p.collection === c);
   globalThis.fromUuid = async (u) => {
     const parts = u.split(".");

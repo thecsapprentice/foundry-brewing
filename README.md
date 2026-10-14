@@ -20,6 +20,7 @@ Then enable **Microbrew** in your world. It requires **[libWrapper](https://foun
 |---|---|
 | **Microbrew: Brewing Tables** | Good Effects (d30), Bad Effects (d30) and Cosmetic Effects (d100). Higher rolls are better on both d30 tables. |
 | **Microbrew: Kegs & Ingredients** | An empty Microbrew Keg, plus herb and plant ingredients in a folder per biome. |
+| **Microbrew: Brew Names** | Editable word tables for automatic brew names: themes, moods, adventurers, patterns, and the Ale / Potion / Tea name styles. |
 | **Microbrew: DM Tools** | Macros: Give a Keg, Reskin a Keg, Forage, Add a Recipe, Remove a Recipe, Clear Recipe Book, Brew, Drink. |
 
 ### Ingredient biomes
@@ -48,6 +49,21 @@ Each ingredient is a dnd5e **Material** item with habitat, a Wisdom (Survival) h
   - The **DM** enters three ingredients (type them, pick from the character's inventory, or drag an item onto the field), an optional name, the servings (default 4), and optionally fixed rolls. They can then **Brew!**, **Deny Request** or **Decide Later**.
   - Brewing again pours out what's left.
 - **Drink Brew**: each use pours one serving and posts the three effects to chat. If you select another character's token first, that character drinks from the Keg. When the Keg is empty, the Drink activity disappears.
+
+## Brew names
+
+When the DM leaves **Brew name** blank, Microbrew names the brew from the **Microbrew: Brew Names** tables, for example *Winter's Rage IPA*, *Bog Hag Ale*, *Bucolic Ale*, *Angry Wizard's Lager* or *Drunken Sailor's Ale*. A known recipe keeps its recorded name, and a typed name always wins.
+
+1. **Theme.** Each ingredient votes for themes. Its biome votes 2 (Wetlands → *Swamp*), and keywords in its name vote 1 (*frost*, *fire*, *moon*, *witch*, *grave*, *dragon*, *sweet*, *fungal*…). One theme is picked by votes, and all its words come from that theme. Unrecognised ingredients use *Tavern*.
+2. **Mood.** The effects set the mood: a strong Good with a mild Bad gives *Merry, Glorious, Triumph*; the reverse gives *Angry, Cursed, Rage*; close calls give *Sleepy, Peculiar, Mischief*.
+3. **Pattern.** A pattern is picked by weight from *Brew Name Patterns* and filled in. Names over four words, or with a repeated word, are skipped.
+4. **Style.** The last word comes from the Keg's **Name style** table: *Ale* (Ale, IPA, Lager, Stout…), *Potion* (Tonic, Elixir, Draught…) or *Tea* (Tisane, Infusion, Chai…). Set it with **Reskin a Keg**.
+
+**Editing the tables.** Compendium tables are locked. To change one, import it into your world (right-click → Import), then edit it there; a world table with the same name replaces the compendium's. Each line is `Kind: Word`, and each table's description explains its kinds. You can also create new ones:
+
+- **A new theme:** create a world table named *Brew Name Theme: Pirate* with lines like `Keyword: rum`, `Biome: Coast & Shore`, `Person: Pirate Captain`, `Place: Crow's Nest`, `Adjective: Scurvy`, `Force: Black Spot`.
+- **A new style:** create a world table named *Brew Name Style: Stew* and pick it in Reskin.
+- **Weights:** change a result's weight to make it more or less common.
 
 ## Foraging
 
@@ -157,7 +173,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.3.0
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.4.0
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.

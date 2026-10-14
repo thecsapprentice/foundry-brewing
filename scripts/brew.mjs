@@ -10,6 +10,7 @@ import { kegContents, kegDescription, drinkActivity, skinOf, countOf, isKeg } fr
 /** Item types that may be used up as ingredients. */
 const INGREDIENT_TYPES = ["loot", "consumable"];
 import { getRecipes, setRecipes } from "./book.mjs";
+import { generateBrewName } from "./names.mjs";
 
 const tierGood = (v) => (v <= 6 ? "Trivial" : v <= 12 ? "Minor" : v <= 18 ? "Moderate" : v <= 24 ? "Strong" : v <= 29 ? "Major" : "Legendary");
 const tierBad = (v) => (v === 1 ? "Catastrophic" : v <= 6 ? "Major" : v <= 12 ? "Strong" : v <= 18 ? "Moderate" : v <= 24 ? "Minor" : "Trivial");
@@ -259,7 +260,15 @@ async function _brew(keg, request) {
   }
 
   // ---- Fill the Keg ----
-  const brewName = (data.brewName ?? "").trim() || (reuse ? known.name : "") || `${ingredients.map(titleCase).join(", ")} ${titleCase(skin.product)}`;
+  let brewName = (data.brewName ?? "").trim() || (reuse ? known.name : "");
+  if (!brewName) {
+    try {
+      brewName = await generateBrewName({ ingredients, good, bad, tables: { good: tables.good, bad: tables.bad }, style: skin.nameStyle });
+    } catch (e) {
+      console.warn("Microbrew | couldn't generate a brew name", e);
+    }
+  }
+  brewName ||= `${ingredients.map(titleCase).join(", ")} ${titleCase(skin.product)}`;
   const contents = { name: brewName, brewer: brewer.name, ingredients, servings, maxServings: servings, good, bad, cosmetic, brewedAt: Date.now() };
   const update = {
     [`flags.world.${FLAG_CONTENTS}`]: contents,

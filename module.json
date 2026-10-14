@@ -2,7 +2,7 @@
   "id": "microbrew",
   "title": "Microbrew",
   "description": "Magical brewing for D&D 5e: a Microbrew Keg that brews ale from three ingredients, with Good, Bad and Cosmetic effect tables, a DM-run Recipe Book, and herb and plant ingredients by biome.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "authors": [
     {
       "name": "thecsapprentice",
@@ -65,6 +65,16 @@
       }
     },
     {
+      "name": "microbrew-names",
+      "label": "Microbrew: Brew Names",
+      "path": "packs/microbrew-names",
+      "type": "RollTable",
+      "ownership": {
+        "PLAYER": "LIMITED",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
       "name": "microbrew-macros",
       "label": "Microbrew: DM Tools",
       "path": "packs/microbrew-macros",
@@ -82,6 +92,7 @@
       "packs": [
         "microbrew-tables",
         "microbrew-items",
+        "microbrew-names",
         "microbrew-macros"
       ]
     }
