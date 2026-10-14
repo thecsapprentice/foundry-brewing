@@ -129,3 +129,12 @@ python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.1.1
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.
+
+### Before committing
+
+```
+node tests/run.mjs        # mocked Foundry/dnd5e test suites; all must pass
+python3 tools/audit.py    # world-safety audit; new or changed write sites must be reviewed
+```
+
+`CLAUDE.md` has the full pre-commit procedure and the world-safety checklist that every change is reviewed against.
