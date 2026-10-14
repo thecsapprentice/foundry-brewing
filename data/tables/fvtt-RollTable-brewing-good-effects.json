@@ -1,0 +1,436 @@
+{
+  "name": "Brewing Results: Good Effects",
+  "img": "icons/svg/heal.svg",
+  "description": "<p>Beneficial brewing effects, scaling from trivial (1) to legendary (30). Tiers: 1-6 trivial, 7-12 minor, 13-18 moderate, 19-24 strong, 25-29 major, 30 legendary.</p>",
+  "results": [
+    {
+      "_id": "ujOeHwdFcAefAZhn",
+      "type": "text",
+      "text": "<p>You gain 1 temporary hit point.</p>",
+      "description": "<p>You gain 1 temporary hit point.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "M6Jy8c1rihtYlKNx",
+      "type": "text",
+      "text": "<p>You regain 1d4 hit points.</p>",
+      "description": "<p>You regain 1d4 hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "HddmQAtKCsXRpJG2",
+      "type": "text",
+      "text": "<p>You gain 1d6 temporary hit points.</p>",
+      "description": "<p>You gain 1d6 temporary hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Tr8hzUjEcPVJ2tRK",
+      "type": "text",
+      "text": "<p>You have advantage on the next ability check you make within 1 hour.</p>",
+      "description": "<p>You have advantage on the next ability check you make within 1 hour.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "JC06DPdRO9YrxPbC",
+      "type": "text",
+      "text": "<p>Your walking speed increases by 10 feet for 10 minutes.</p>",
+      "description": "<p>Your walking speed increases by 10 feet for 10 minutes.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "khdVipy2eBI2Y1rz",
+      "type": "text",
+      "text": "<p>You gain darkvision out to 60 feet for 1 hour. If you already have darkvision, its range increases by 30 feet.</p>",
+      "description": "<p>You gain darkvision out to 60 feet for 1 hour. If you already have darkvision, its range increases by 30 feet.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "w27jkooEKqazwJ7Q",
+      "type": "text",
+      "text": "<p>You regain 2d4 + 2 hit points.</p>",
+      "description": "<p>You regain 2d4 + 2 hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "FMPd3W2XyygNdemk",
+      "type": "text",
+      "text": "<p>You have advantage on the next attack roll you make within 1 hour.</p>",
+      "description": "<p>You have advantage on the next attack roll you make within 1 hour.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "vdajgwb2Mjpvwh09",
+      "type": "text",
+      "text": "<p>Once within the next hour, after you roll a d20, you can reroll it. You must use the new roll.</p>",
+      "description": "<p>Once within the next hour, after you roll a d20, you can reroll it. You must use the new roll.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "CDfgvqZkb6GjHbG8",
+      "type": "text",
+      "text": "<p>You gain a +1 bonus to AC for 1 hour.</p>",
+      "description": "<p>You gain a +1 bonus to AC for 1 hour.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "1RqwkVHWunY90XYT",
+      "type": "text",
+      "text": "<p>Roll for a damage type (d10: 1 acid, 2 cold, 3 fire, 4 lightning, 5 necrotic, 6 poison, 7 psychic, 8 radiant, 9 thunder, 10 force). You have resistance to that damage type for 1 hour.</p>",
+      "description": "<p>Roll for a damage type (d10: 1 acid, 2 cold, 3 fire, 4 lightning, 5 necrotic, 6 poison, 7 psychic, 8 radiant, 9 thunder, 10 force). You have resistance to that damage type for 1 hour.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "oGwbbrqQ7B697wno",
+      "type": "text",
+      "text": "<p>You gain 2d10 temporary hit points.</p>",
+      "description": "<p>You gain 2d10 temporary hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "mmM30DOXfO4WUDlW",
+      "type": "text",
+      "text": "<p>For 1 minute, you add 1d4 to your attack rolls and saving throws (as the bless spell, no concentration).</p>",
+      "description": "<p>For 1 minute, you add 1d4 to your attack rolls and saving throws (as the bless spell, no concentration).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "uX8yy6Skhj4YjZ8O",
+      "type": "text",
+      "text": "<p>You regain 4d4 + 4 hit points.</p>",
+      "description": "<p>You regain 4d4 + 4 hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "vIia8OG5A2ZnpsoK",
+      "type": "text",
+      "text": "<p>One disease affecting you ends, or one of these conditions ends: blinded, deafened, paralyzed, or poisoned (as the lesser restoration spell).</p>",
+      "description": "<p>One disease affecting you ends, or one of these conditions ends: blinded, deafened, paralyzed, or poisoned (as the lesser restoration spell).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "qzi4vCK4A4FGGbBl",
+      "type": "text",
+      "text": "<p>Your form blurs. For 1 minute, attack rolls against you have disadvantage (as the blur spell, no concentration).</p>",
+      "description": "<p>Your form blurs. For 1 minute, attack rolls against you have disadvantage (as the blur spell, no concentration).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "aXkDSIuGIWgIprVF",
+      "type": "text",
+      "text": "<p>Your hit point maximum and current hit points each increase by 5 for 8 hours (as the aid spell).</p>",
+      "description": "<p>Your hit point maximum and current hit points each increase by 5 for 8 hours (as the aid spell).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "IV4BLFFQCHD6R26q",
+      "type": "text",
+      "text": "<p>You turn invisible for 10 minutes, or until you attack or cast a spell (as the invisibility spell, no concentration).</p>",
+      "description": "<p>You turn invisible for 10 minutes, or until you attack or cast a spell (as the invisibility spell, no concentration).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "I60ihBeoePW3jSOi",
+      "type": "text",
+      "text": "<p>You grow one size category larger for 1 hour (as the enlarge effect of enlarge/reduce, no concentration): you have advantage on Strength checks and Strength saving throws, and your weapon attacks deal an extra 1d4 damage. Your gear grows with you.</p>",
+      "description": "<p>You grow one size category larger for 1 hour (as the enlarge effect of enlarge/reduce, no concentration): you have advantage on Strength checks and Strength saving throws, and your weapon attacks deal an extra 1d4 damage. Your gear grows with you.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "27n7yE9ZkAFvmtSb",
+      "type": "text",
+      "text": "<p>If you have spell slots, you regain one expended spell slot of 2nd level or lower. If you have none, you instead regain 4d4 + 4 hit points.</p>",
+      "description": "<p>If you have spell slots, you regain one expended spell slot of 2nd level or lower. If you have none, you instead regain 4d4 + 4 hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "IBbuMFd9W8gqcWqi",
+      "type": "text",
+      "text": "<p>The first time you would drop to 0 hit points within the next 8 hours, you drop to 1 hit point instead (as the death ward spell).</p>",
+      "description": "<p>The first time you would drop to 0 hit points within the next 8 hours, you drop to 1 hit point instead (as the death ward spell).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "A4Yqj4JRfdQAe6NX",
+      "type": "text",
+      "text": "<p>You gain a flying speed of 60 feet for 10 minutes (as the fly spell, no concentration). If you're airborne when it ends, you fall.</p>",
+      "description": "<p>You gain a flying speed of 60 feet for 10 minutes (as the fly spell, no concentration). If you're airborne when it ends, you fall.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "f1e1CvI5qiGogkdm",
+      "type": "text",
+      "text": "<p>You regain 8d4 + 8 hit points.</p>",
+      "description": "<p>You regain 8d4 + 8 hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "tsVrFlvbpaTIlD5g",
+      "type": "text",
+      "text": "<p>You are hasted for 1 minute (as the haste spell, no concentration): your speed is doubled, you gain +2 AC and advantage on Dexterity saves, and you get one extra action each turn (Attack with one weapon attack only, Dash, Disengage, Hide, or Use an Object). When it ends, you can't move or take actions until after your next turn.</p>",
+      "description": "<p>You are hasted for 1 minute (as the haste spell, no concentration): your speed is doubled, you gain +2 AC and advantage on Dexterity saves, and you get one extra action each turn (Attack with one weapon attack only, Dash, Disengage, Hide, or Use an Object). When it ends, you can't move or take actions until after your next turn.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "YAEZyFQ8vZRNzvdi",
+      "type": "text",
+      "text": "<p>Your skin turns hard as stone. You have resistance to bludgeoning, piercing, and slashing damage for 10 minutes (as the stoneskin spell, no concentration).</p>",
+      "description": "<p>Your skin turns hard as stone. You have resistance to bludgeoning, piercing, and slashing damage for 10 minutes (as the stoneskin spell, no concentration).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "eTpkf01PrpsCjBq7",
+      "type": "text",
+      "text": "<p>You turn invisible for 1 minute, and attacking or casting spells doesn't end it (as the greater invisibility spell, no concentration).</p>",
+      "description": "<p>You turn invisible for 1 minute, and attacking or casting spells doesn't end it (as the greater invisibility spell, no concentration).</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "8Hp7twaxDFmFaqfy",
+      "type": "text",
+      "text": "<p>You gain the benefits of the greater restoration spell: reduce your exhaustion by one level, or end one charm, petrification, curse, ability score reduction, or hit point maximum reduction affecting you.</p>",
+      "description": "<p>You gain the benefits of the greater restoration spell: reduce your exhaustion by one level, or end one charm, petrification, curse, ability score reduction, or hit point maximum reduction affecting you.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "cbsoKGUOS2yu9jSN",
+      "type": "text",
+      "text": "<p>For 1 minute, you have resistance to all damage.</p>",
+      "description": "<p>For 1 minute, you have resistance to all damage.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "cZ3MTYiGFZXZK3QQ",
+      "type": "text",
+      "text": "<p>You regain 10d4 + 20 hit points.</p>",
+      "description": "<p>You regain 10d4 + 20 hit points.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "obiwgZIMMQEaXUFH",
+      "type": "text",
+      "text": "<p>You gain the benefits of the heal spell: you regain 70 hit points, and you are cured of blindness, deafness, and any diseases.</p>",
+      "description": "<p>You gain the benefits of the heal spell: you regain 70 hit points, and you are cured of blindness, deafness, and any diseases.</p>",
+      "img": "icons/svg/heal.svg",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {}
+    }
+  ],
+  "formula": "1d30",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

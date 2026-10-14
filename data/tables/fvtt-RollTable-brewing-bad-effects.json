@@ -1,0 +1,436 @@
+{
+  "name": "Brewing Results: Bad Effects",
+  "img": "icons/svg/poison.svg",
+  "description": "<p>Harmful brewing effects. Higher rolls are better: 1 is catastrophic, 30 is trivial. Tiers: 1 catastrophic, 2-6 major, 7-12 strong, 13-18 moderate, 19-24 minor, 25-30 trivial.</p>",
+  "results": [
+    {
+      "_id": "OeTpeqTmT8ExDQVM",
+      "type": "text",
+      "text": "<p>You suffer the effects of the harm spell: make a DC 15 Constitution saving throw, taking 14d6 necrotic damage on a failure or half as much on a success. Your hit point maximum is reduced by the necrotic damage taken until you finish a long rest. This effect can't reduce your hit points or hit point maximum below 1.</p>",
+      "description": "<p>You suffer the effects of the harm spell: make a DC 15 Constitution saving throw, taking 14d6 necrotic damage on a failure or half as much on a success. Your hit point maximum is reduced by the necrotic damage taken until you finish a long rest. This effect can't reduce your hit points or hit point maximum below 1.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "NejpUsJadqPQPsGC",
+      "type": "text",
+      "text": "<p>For 8 hours, you can't regain hit points by any means.</p>",
+      "description": "<p>For 8 hours, you can't regain hit points by any means.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Ch3m86bCY8Bqn6nK",
+      "type": "text",
+      "text": "<p>Your flesh begins to harden. Make a DC 15 Constitution saving throw. On a failure, you are restrained; at the end of your next turn, repeat the save. On a second failure, you are petrified for 1 hour (greater restoration ends it early).</p>",
+      "description": "<p>Your flesh begins to harden. Make a DC 15 Constitution saving throw. On a failure, you are restrained; at the end of your next turn, repeat the save. On a second failure, you are petrified for 1 hour (greater restoration ends it early).</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "iG7iYF2Ro3EbaEBs",
+      "type": "text",
+      "text": "<p>You are paralyzed. At the end of each of your turns, make a DC 15 Constitution saving throw, ending the effect on a success. The effect ends on its own after 1 minute.</p>",
+      "description": "<p>You are paralyzed. At the end of each of your turns, make a DC 15 Constitution saving throw, ending the effect on a success. The effect ends on its own after 1 minute.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ivt0aU0h5S3rxy9K",
+      "type": "text",
+      "text": "<p>You are cursed for 8 hours, or until the curse is removed by remove curse (as the bestow curse spell). Roll a d6 for an ability (1 Str, 2 Dex, 3 Con, 4 Int, 5 Wis, 6 Cha); you have disadvantage on ability checks and saving throws with it.</p>",
+      "description": "<p>You are cursed for 8 hours, or until the curse is removed by remove curse (as the bestow curse spell). Roll a d6 for an ability (1 Str, 2 Dex, 3 Con, 4 Int, 5 Wis, 6 Cha); you have disadvantage on ability checks and saving throws with it.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "wArcgZr6pqFlx72Y",
+      "type": "text",
+      "text": "<p>Your body turns brittle. You have vulnerability to bludgeoning, piercing, and slashing damage for 1 minute.</p>",
+      "description": "<p>Your body turns brittle. You have vulnerability to bludgeoning, piercing, and slashing damage for 1 minute.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "N46ISdTBUNrd5hDv",
+      "type": "text",
+      "text": "<p>You gain 2 levels of exhaustion (each long rest removes one as normal).</p>",
+      "description": "<p>You gain 2 levels of exhaustion (each long rest removes one as normal).</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "sT8qOsIykkm4En49",
+      "type": "text",
+      "text": "<p>Make a DC 13 Constitution saving throw, taking 4d10 poison damage on a failure or half as much on a success.</p>",
+      "description": "<p>Make a DC 13 Constitution saving throw, taking 4d10 poison damage on a failure or half as much on a success.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "BilfvfoqJ3UzzGxu",
+      "type": "text",
+      "text": "<p>You are slowed for 1 minute (as the slow spell): your speed is halved, you take -2 to AC and Dexterity saves, you can't take reactions, and you can take either an action or a bonus action on your turn, not both.</p>",
+      "description": "<p>You are slowed for 1 minute (as the slow spell): your speed is halved, you take -2 to AC and Dexterity saves, you can't take reactions, and you can take either an action or a bonus action on your turn, not both.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "dr7hFN1nqpyB702b",
+      "type": "text",
+      "text": "<p>Make a DC 13 Constitution saving throw. On a failure, you fall unconscious for 1 minute, or until you take damage or someone uses an action to wake you.</p>",
+      "description": "<p>Make a DC 13 Constitution saving throw. On a failure, you fall unconscious for 1 minute, or until you take damage or someone uses an action to wake you.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "bR3DKay5Z18pgjGQ",
+      "type": "text",
+      "text": "<p>You fall ill. Until you finish a long rest (or receive lesser restoration), you have disadvantage on Constitution checks and Constitution saving throws.</p>",
+      "description": "<p>You fall ill. Until you finish a long rest (or receive lesser restoration), you have disadvantage on Constitution checks and Constitution saving throws.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "6SOVCIcWo5OshpNR",
+      "type": "text",
+      "text": "<p>You shrink one size category smaller for 1 hour (as the reduce effect of enlarge/reduce): you have disadvantage on Strength checks and Strength saving throws, and your weapon attacks deal 1d4 less damage (minimum 1). Your gear shrinks with you.</p>",
+      "description": "<p>You shrink one size category smaller for 1 hour (as the reduce effect of enlarge/reduce): you have disadvantage on Strength checks and Strength saving throws, and your weapon attacks deal 1d4 less damage (minimum 1). Your gear shrinks with you.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "geGKynLasC7N2Dop",
+      "type": "text",
+      "text": "<p>Your form flickers erratically. For 1 minute, attack rolls against you have advantage.</p>",
+      "description": "<p>Your form flickers erratically. For 1 minute, attack rolls against you have advantage.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "7RtbEPApP5ocuAQm",
+      "type": "text",
+      "text": "<p>You lose one unexpended spell slot of 2nd level or lower until you finish a long rest. If you have no spell slots, you instead take 3d6 psychic damage.</p>",
+      "description": "<p>You lose one unexpended spell slot of 2nd level or lower until you finish a long rest. If you have no spell slots, you instead take 3d6 psychic damage.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "XTFm8tYonVs7Elnz",
+      "type": "text",
+      "text": "<p>Your hit point maximum is reduced by 5 until you finish a long rest.</p>",
+      "description": "<p>Your hit point maximum is reduced by 5 until you finish a long rest.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "P6jyn8iddy32T95u",
+      "type": "text",
+      "text": "<p>You are blinded for 1 minute. At the end of each of your turns, make a DC 13 Constitution saving throw, ending the effect on a success.</p>",
+      "description": "<p>You are blinded for 1 minute. At the end of each of your turns, make a DC 13 Constitution saving throw, ending the effect on a success.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "l6UbPxxukarv7h7m",
+      "type": "text",
+      "text": "<p>You gain 1 level of exhaustion (removed normally by finishing a long rest).</p>",
+      "description": "<p>You gain 1 level of exhaustion (removed normally by finishing a long rest).</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "wYYAdDx5lw3bzYVc",
+      "type": "text",
+      "text": "<p>For 1 minute, you subtract 1d4 from your attack rolls and saving throws (as the bane spell).</p>",
+      "description": "<p>For 1 minute, you subtract 1d4 from your attack rolls and saving throws (as the bane spell).</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "cd5pU3vq7MqStraU",
+      "type": "text",
+      "text": "<p>You take 2d10 poison damage.</p>",
+      "description": "<p>You take 2d10 poison damage.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "4N6boD77xpAE5lXT",
+      "type": "text",
+      "text": "<p>Roll for a damage type (d10: 1 acid, 2 cold, 3 fire, 4 lightning, 5 necrotic, 6 poison, 7 psychic, 8 radiant, 9 thunder, 10 force). You have vulnerability to that damage type for 10 minutes.</p>",
+      "description": "<p>Roll for a damage type (d10: 1 acid, 2 cold, 3 fire, 4 lightning, 5 necrotic, 6 poison, 7 psychic, 8 radiant, 9 thunder, 10 force). You have vulnerability to that damage type for 10 minutes.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ZVLutwWemUpecIu8",
+      "type": "text",
+      "text": "<p>You are poisoned for 10 minutes.</p>",
+      "description": "<p>You are poisoned for 10 minutes.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "29qffESBozMPU0Ph",
+      "type": "text",
+      "text": "<p>The next time within 1 hour that you would roll a d20 with advantage, you roll with disadvantage instead.</p>",
+      "description": "<p>The next time within 1 hour that you would roll a d20 with advantage, you roll with disadvantage instead.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "0sJxTmppj2Juy9Fo",
+      "type": "text",
+      "text": "<p>You take a -1 penalty to AC for 1 hour.</p>",
+      "description": "<p>You take a -1 penalty to AC for 1 hour.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "YO9gDY04cshl8K5x",
+      "type": "text",
+      "text": "<p>You are deafened for 10 minutes.</p>",
+      "description": "<p>You are deafened for 10 minutes.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "1BqW6gKMnwimpLOm",
+      "type": "text",
+      "text": "<p>For 1 hour, you lose your darkvision. If you don't have darkvision, you instead have disadvantage on Wisdom (Perception) checks that rely on sight.</p>",
+      "description": "<p>For 1 hour, you lose your darkvision. If you don't have darkvision, you instead have disadvantage on Wisdom (Perception) checks that rely on sight.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "auQltmXHdgyINfkR",
+      "type": "text",
+      "text": "<p>You have disadvantage on the next attack roll you make within 1 hour.</p>",
+      "description": "<p>You have disadvantage on the next attack roll you make within 1 hour.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "zrt7tJwz19wmTma3",
+      "type": "text",
+      "text": "<p>You take 1d6 poison damage.</p>",
+      "description": "<p>You take 1d6 poison damage.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "AYz2CkaIN4fMwFjr",
+      "type": "text",
+      "text": "<p>Your walking speed decreases by 10 feet for 10 minutes.</p>",
+      "description": "<p>Your walking speed decreases by 10 feet for 10 minutes.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "G5gEX7mh68Dd5y4M",
+      "type": "text",
+      "text": "<p>You have disadvantage on the next ability check you make within 1 hour.</p>",
+      "description": "<p>You have disadvantage on the next ability check you make within 1 hour.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ZjWnz0ZlnyGxhpS3",
+      "type": "text",
+      "text": "<p>You take 1 poison damage.</p>",
+      "description": "<p>You take 1 poison damage.</p>",
+      "img": "icons/svg/poison.svg",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {}
+    }
+  ],
+  "formula": "1d30",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

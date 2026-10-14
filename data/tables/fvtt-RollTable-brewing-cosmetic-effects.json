@@ -1,0 +1,1416 @@
+{
+  "name": "Brewing Results: Cosmetic Effects",
+  "img": "icons/svg/aura.svg",
+  "description": "<p>Harmless, flavorful brewing side effects. No mechanical impact.</p>",
+  "results": [
+    {
+      "_id": "cIUcZhLIMsAKAOBB",
+      "type": "text",
+      "text": "<p>Your hair turns a vivid color (d6: 1 blue, 2 green, 3 violet, 4 silver, 5 crimson, 6 gold) for 1d4 days.</p>",
+      "description": "<p>Your hair turns a vivid color (d6: 1 blue, 2 green, 3 violet, 4 silver, 5 crimson, 6 gold) for 1d4 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "bMEoVWClDghAfBFc",
+      "type": "text",
+      "text": "<p>Your eyes glow faintly for 8 hours. It's pretty, but too dim to see by.</p>",
+      "description": "<p>Your eyes glow faintly for 8 hours. It's pretty, but too dim to see by.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "NfTWFdFx6i19TYm8",
+      "type": "text",
+      "text": "<p>For 1 hour, your voice drops to a booming baritone or rises to a squeaky soprano (whichever is funnier).</p>",
+      "description": "<p>For 1 hour, your voice drops to a booming baritone or rises to a squeaky soprano (whichever is funnier).</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "E74kW5evUj3rYiF5",
+      "type": "text",
+      "text": "<p>For 1 hour, soap bubbles drift from your mouth whenever you speak.</p>",
+      "description": "<p>For 1 hour, soap bubbles drift from your mouth whenever you speak.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "mqFtclj6Q3kWhGNw",
+      "type": "text",
+      "text": "<p>You smell strongly of fresh-baked bread for 24 hours.</p>",
+      "description": "<p>You smell strongly of fresh-baked bread for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "2IJ2g9NyXq9JwVBk",
+      "type": "text",
+      "text": "<p>Your skin takes on a faint pastel tint (d4: lavender, mint, peach, sky blue) until your next long rest.</p>",
+      "description": "<p>Your skin takes on a faint pastel tint (d4: lavender, mint, peach, sky blue) until your next long rest.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "UcYpN9KPtacjMAF3",
+      "type": "text",
+      "text": "<p>Tiny wildflowers sprout in your hair. They wilt after 3 days.</p>",
+      "description": "<p>Tiny wildflowers sprout in your hair. They wilt after 3 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ioObawgwnKKmMDi6",
+      "type": "text",
+      "text": "<p>For 1 hour, your shadow moves a half-second behind you.</p>",
+      "description": "<p>For 1 hour, your shadow moves a half-second behind you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "pjfN2WyqaNIvOB6T",
+      "type": "text",
+      "text": "<p>For 24 hours, a small puff of glitter escapes whenever you laugh.</p>",
+      "description": "<p>For 24 hours, a small puff of glitter escapes whenever you laugh.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "p4cGzodWaI6imLFN",
+      "type": "text",
+      "text": "<p>For 1 hour, your footsteps leave faintly glowing prints that fade after a minute.</p>",
+      "description": "<p>For 1 hour, your footsteps leave faintly glowing prints that fade after a minute.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Yktsd3WSa0UCTCog",
+      "type": "text",
+      "text": "<p>For 10 minutes, you hiccup tiny, harmless sparks.</p>",
+      "description": "<p>For 10 minutes, you hiccup tiny, harmless sparks.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ocuUR0SqIBWGqN7n",
+      "type": "text",
+      "text": "<p>Your fingernails turn iridescent like beetle shells for 1 week.</p>",
+      "description": "<p>Your fingernails turn iridescent like beetle shells for 1 week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "2aqoU6Uu2uo4NQP8",
+      "type": "text",
+      "text": "<p>For 10 minutes, everything you say rhymes, whether you mean it to or not.</p>",
+      "description": "<p>For 10 minutes, everything you say rhymes, whether you mean it to or not.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "D0R1BSJtnMe4ibg5",
+      "type": "text",
+      "text": "<p>A small, harmless butterfly circles your head for 1 hour.</p>",
+      "description": "<p>A small, harmless butterfly circles your head for 1 hour.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "vibcQNRTeKwYY3e1",
+      "type": "text",
+      "text": "<p>Your beard (or eyebrows) instantly grow 1d6 inches. The extra length falls away after 1d4 days.</p>",
+      "description": "<p>Your beard (or eyebrows) instantly grow 1d6 inches. The extra length falls away after 1d4 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "46gmgc0YNZNrggUm",
+      "type": "text",
+      "text": "<p>Your ears become pointed (or rounded, if they already were) for 24 hours.</p>",
+      "description": "<p>Your ears become pointed (or rounded, if they already were) for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "tAbprSwt7F0MbzBV",
+      "type": "text",
+      "text": "<p>For 1 hour, you make a soft musical chime with every step.</p>",
+      "description": "<p>For 1 hour, you make a soft musical chime with every step.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "vRHn1fYkamV8aEEX",
+      "type": "text",
+      "text": "<p>For 1 hour, your breath fogs as if it were the dead of winter.</p>",
+      "description": "<p>For 1 hour, your breath fogs as if it were the dead of winter.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "lEvZq6rnREgNfWRW",
+      "type": "text",
+      "text": "<p>For 24 hours, your reflection acts a little on its own: winking, yawning, or rolling its eyes at you.</p>",
+      "description": "<p>For 24 hours, your reflection acts a little on its own: winking, yawning, or rolling its eyes at you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Mwyy3f3bmq3Fx2oC",
+      "type": "text",
+      "text": "<p>Freckles appear on your face in the pattern of a constellation. They fade after a week.</p>",
+      "description": "<p>Freckles appear on your face in the pattern of a constellation. They fade after a week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "GUUOvuj0PUkBVJhC",
+      "type": "text",
+      "text": "<p>For 1 hour, your hair floats and drifts as if you were underwater.</p>",
+      "description": "<p>For 1 hour, your hair floats and drifts as if you were underwater.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "2olsR0jjpuGjul8T",
+      "type": "text",
+      "text": "<p>For 8 hours, you speak with a thick accent from a distant land none of you have visited.</p>",
+      "description": "<p>For 8 hours, you speak with a thick accent from a distant land none of you have visited.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "g7gx8XTAmNgmycyX",
+      "type": "text",
+      "text": "<p>Your tongue turns bright blue for 1 day.</p>",
+      "description": "<p>Your tongue turns bright blue for 1 day.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "QFNCiLzT4AJUAoS2",
+      "type": "text",
+      "text": "<p>For 1 hour, everything you touch feels pleasantly warm for a moment.</p>",
+      "description": "<p>For 1 hour, everything you touch feels pleasantly warm for a moment.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "VR0QNCtMgAWSNpAC",
+      "type": "text",
+      "text": "<p>For 1 hour, small birds land on you whenever you stand still for more than a few seconds.</p>",
+      "description": "<p>For 1 hour, small birds land on you whenever you stand still for more than a few seconds.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "MzP5lOWyE8cHjW6G",
+      "type": "text",
+      "text": "<p>You smell intensely of roses for 8 hours. Cats sneeze when near you.</p>",
+      "description": "<p>You smell intensely of roses for 8 hours. Cats sneeze when near you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "gJHSFNZGz6nQyVh9",
+      "type": "text",
+      "text": "<p>Your sweat smells of cinnamon for 24 hours.</p>",
+      "description": "<p>Your sweat smells of cinnamon for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "wdryazARvqnT6GnX",
+      "type": "text",
+      "text": "<p>Your skin sparkles in direct sunlight for 24 hours.</p>",
+      "description": "<p>Your skin sparkles in direct sunlight for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "yniWYNDIo7vNYYDs",
+      "type": "text",
+      "text": "<p>You burp a perfect smoke ring. It hangs in the air for a full minute.</p>",
+      "description": "<p>You burp a perfect smoke ring. It hangs in the air for a full minute.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "HhZv0qxpAlaSrpsD",
+      "type": "text",
+      "text": "<p>Your hair turns stark white for 1 week.</p>",
+      "description": "<p>Your hair turns stark white for 1 week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ANOw50dZ4WiZNaa7",
+      "type": "text",
+      "text": "<p>Your eye color changes to a random color for 1 week.</p>",
+      "description": "<p>Your eye color changes to a random color for 1 week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "OpgioWvj4Xk3LWP3",
+      "type": "text",
+      "text": "<p>Your teeth glow in the dark for 8 hours.</p>",
+      "description": "<p>Your teeth glow in the dark for 8 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "W0mQGTB2IqoiEdCi",
+      "type": "text",
+      "text": "<p>For 1 hour, the color of your clothing shifts to match your mood.</p>",
+      "description": "<p>For 1 hour, the color of your clothing shifts to match your mood.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "EEH1a0DIP0xz7eNN",
+      "type": "text",
+      "text": "<p>For 1 hour, tiny motes of light orbit you like fireflies (too dim to see by).</p>",
+      "description": "<p>For 1 hour, tiny motes of light orbit you like fireflies (too dim to see by).</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "bLQ5u8FE3cSMu1wD",
+      "type": "text",
+      "text": "<p>For 10 minutes, your feet hover a hair's breadth above the ground. It has no mechanical effect; you still trigger pressure plates.</p>",
+      "description": "<p>For 10 minutes, your feet hover a hair's breadth above the ground. It has no mechanical effect; you still trigger pressure plates.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "GVnAAIZsZzFqF8OX",
+      "type": "text",
+      "text": "<p>Your hands are cold as ice for 1 hour. Handshakes become awkward.</p>",
+      "description": "<p>Your hands are cold as ice for 1 hour. Handshakes become awkward.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "utsKNWcS2Hdsal5L",
+      "type": "text",
+      "text": "<p>You grow a luxurious mustache, regardless of species. It falls out after 1d4 days.</p>",
+      "description": "<p>You grow a luxurious mustache, regardless of species. It falls out after 1d4 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        37,
+        37
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "OW4LMMRKQnPCVglc",
+      "type": "text",
+      "text": "<p>Your fingertips become faintly translucent for 1 hour.</p>",
+      "description": "<p>Your fingertips become faintly translucent for 1 hour.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        38,
+        38
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "W4OwZWIpsAtAN5dJ",
+      "type": "text",
+      "text": "<p>For 1 hour, you can't stop humming a tune you've never heard before.</p>",
+      "description": "<p>For 1 hour, you can't stop humming a tune you've never heard before.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        39,
+        39
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "chYJ4BayK68DzgNn",
+      "type": "text",
+      "text": "<p>For 8 hours, your voice echoes slightly, as though you're speaking in a great hall.</p>",
+      "description": "<p>For 8 hours, your voice echoes slightly, as though you're speaking in a great hall.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        40,
+        40
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "jaaQh7f1hbSpTldV",
+      "type": "text",
+      "text": "<p>Your hair instantly grows 1d12 inches. The extra length falls away after 1d4 days.</p>",
+      "description": "<p>Your hair instantly grows 1d12 inches. The extra length falls away after 1d4 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        41,
+        41
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "S1TfMRC5p7SaaOYe",
+      "type": "text",
+      "text": "<p>For 24 hours, steam rises from your head whenever you get angry.</p>",
+      "description": "<p>For 24 hours, steam rises from your head whenever you get angry.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        42,
+        42
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "tTk1EdwJBPiXwNNz",
+      "type": "text",
+      "text": "<p>For 24 hours, your cheeks flush bright pink whenever anyone compliments you.</p>",
+      "description": "<p>For 24 hours, your cheeks flush bright pink whenever anyone compliments you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        43,
+        43
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "xW6WJsd8RZuL8ZLt",
+      "type": "text",
+      "text": "<p>A small tattoo of a cauldron appears on your skin and slowly crawls around your body. It fades after a week.</p>",
+      "description": "<p>A small tattoo of a cauldron appears on your skin and slowly crawls around your body. It fades after a week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        44,
+        44
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "A3xQL3YraqAKY3cZ",
+      "type": "text",
+      "text": "<p>Tiny harmless mushrooms sprout on your boots overnight. They wither after 3 days.</p>",
+      "description": "<p>Tiny harmless mushrooms sprout on your boots overnight. They wither after 3 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        45,
+        45
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Y1Jq0YQ4vfIXmU5o",
+      "type": "text",
+      "text": "<p>For 10 minutes, gentle snow falls around you in a 5-foot radius, melting on contact.</p>",
+      "description": "<p>For 10 minutes, gentle snow falls around you in a 5-foot radius, melting on contact.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        46,
+        46
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "LQCmpUXCfYVoJ32G",
+      "type": "text",
+      "text": "<p>For 10 minutes, the words you speak briefly appear as glowing letters in the air.</p>",
+      "description": "<p>For 10 minutes, the words you speak briefly appear as glowing letters in the air.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        47,
+        47
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "DKlllRwIyGjc9xgN",
+      "type": "text",
+      "text": "<p>You sneeze once, releasing 1d4 butterflies.</p>",
+      "description": "<p>You sneeze once, releasing 1d4 butterflies.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        48,
+        48
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "WjLvGbc91EJqWA6V",
+      "type": "text",
+      "text": "<p>A faint golden halo hovers over your head for 1 hour.</p>",
+      "description": "<p>A faint golden halo hovers over your head for 1 hour.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        49,
+        49
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Y7pcmlfdI1C64dLy",
+      "type": "text",
+      "text": "<p>Two tiny horns, barely an inch long, sprout from your forehead for 24 hours.</p>",
+      "description": "<p>Two tiny horns, barely an inch long, sprout from your forehead for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        50,
+        50
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "h7pIN7PyBj79ncpv",
+      "type": "text",
+      "text": "<p>Your hair becomes soft, downy feathers for 24 hours.</p>",
+      "description": "<p>Your hair becomes soft, downy feathers for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        51,
+        51
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "34ZcWRO9diU6PsKU",
+      "type": "text",
+      "text": "<p>Patches of shimmering scales appear on your forearms. They flake off after a week.</p>",
+      "description": "<p>Patches of shimmering scales appear on your forearms. They flake off after a week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        52,
+        52
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "guphDkoiQaSmc5n5",
+      "type": "text",
+      "text": "<p>Your pupils become vertical slits like a cat's for 24 hours.</p>",
+      "description": "<p>Your pupils become vertical slits like a cat's for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        53,
+        53
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "13iBg50MCvZDMind",
+      "type": "text",
+      "text": "<p>For 24 hours, sweet things taste sour and sour things taste sweet.</p>",
+      "description": "<p>For 24 hours, sweet things taste sour and sour things taste sweet.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        54,
+        54
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "SIi1qzjq0ukEt3h8",
+      "type": "text",
+      "text": "<p>For 1 day, any drink you hold becomes slightly carbonated.</p>",
+      "description": "<p>For 1 day, any drink you hold becomes slightly carbonated.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        55,
+        55
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "d3PnDrpmw995gr3d",
+      "type": "text",
+      "text": "<p>For 8 hours, faint bioluminescent spots glow on your skin in darkness, like a deep-sea fish.</p>",
+      "description": "<p>For 8 hours, faint bioluminescent spots glow on your skin in darkness, like a deep-sea fish.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        56,
+        56
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Ts8aYviaZGlA4nJi",
+      "type": "text",
+      "text": "<p>For 8 hours, your laugh sounds exactly like a donkey's bray.</p>",
+      "description": "<p>For 8 hours, your laugh sounds exactly like a donkey's bray.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        57,
+        57
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "lVSmefLEqmLRYKme",
+      "type": "text",
+      "text": "<p>For 1 hour, your hair stands on end and tiny harmless sparks jump when you touch metal.</p>",
+      "description": "<p>For 1 hour, your hair stands on end and tiny harmless sparks jump when you touch metal.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        58,
+        58
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "TzSdYu01Ea4D2qlZ",
+      "type": "text",
+      "text": "<p>For 1 day, you crave a bizarre food (d4: pickled eel, raw onion, chalk-dust biscuits, pine needles).</p>",
+      "description": "<p>For 1 day, you crave a bizarre food (d4: pickled eel, raw onion, chalk-dust biscuits, pine needles).</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        59,
+        59
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "wkxKaGBFhSY1tSxU",
+      "type": "text",
+      "text": "<p>For 10 minutes, you leave a trail of tiny flower petals wherever you walk.</p>",
+      "description": "<p>For 10 minutes, you leave a trail of tiny flower petals wherever you walk.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        60,
+        60
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "d27EFGHb7nlgpYbf",
+      "type": "text",
+      "text": "<p>Your skin gives off a gentle warmth for 8 hours. Lizards and cats try to curl up on you.</p>",
+      "description": "<p>Your skin gives off a gentle warmth for 8 hours. Lizards and cats try to curl up on you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        61,
+        61
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "RmbLJGRg1SchEFrh",
+      "type": "text",
+      "text": "<p>For 1 hour, your voice sounds exactly like another party member's (choose randomly).</p>",
+      "description": "<p>For 1 hour, your voice sounds exactly like another party member's (choose randomly).</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        62,
+        62
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ziK1jJUkZ6yA0Gy6",
+      "type": "text",
+      "text": "<p>For 1 hour, you see colorful but meaningless auras around everyone.</p>",
+      "description": "<p>For 1 hour, you see colorful but meaningless auras around everyone.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        63,
+        63
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "WuouB8X4Y0dG75pA",
+      "type": "text",
+      "text": "<p>Your veins glow a faint blue for 10 minutes.</p>",
+      "description": "<p>Your veins glow a faint blue for 10 minutes.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        64,
+        64
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "NwGeAFbi8W6NY22c",
+      "type": "text",
+      "text": "<p>For 1 hour, you can't stop smiling, no matter how grim things get.</p>",
+      "description": "<p>For 1 hour, you can't stop smiling, no matter how grim things get.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        65,
+        65
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "NqQqH5MpGA6rsOhK",
+      "type": "text",
+      "text": "<p>For 1 day, your handwriting becomes elegant, flowing calligraphy.</p>",
+      "description": "<p>For 1 day, your handwriting becomes elegant, flowing calligraphy.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        66,
+        66
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "7FqCHjhiszrpfH0L",
+      "type": "text",
+      "text": "<p>For 1 hour, you have a lovely singing voice and an urge to use it.</p>",
+      "description": "<p>For 1 hour, you have a lovely singing voice and an urge to use it.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        67,
+        67
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "JOmSCHLDtpnFxKav",
+      "type": "text",
+      "text": "<p>A small birthmark in the shape of a cauldron appears somewhere on your body. It fades after 1 week.</p>",
+      "description": "<p>A small birthmark in the shape of a cauldron appears somewhere on your body. It fades after 1 week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        68,
+        68
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "1oIEr9sVje2BdyBT",
+      "type": "text",
+      "text": "<p>For 10 minutes, your voice drops to a whisper unless you concentrate to speak up.</p>",
+      "description": "<p>For 10 minutes, your voice drops to a whisper unless you concentrate to speak up.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        69,
+        69
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "gn7TjuvPM0YGTUVD",
+      "type": "text",
+      "text": "<p>For a week, your hair braids itself while you sleep.</p>",
+      "description": "<p>For a week, your hair braids itself while you sleep.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        70,
+        70
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "WR4h1aVKE7JzW2Lx",
+      "type": "text",
+      "text": "<p>Animals think you smell like family. A stray cat or dog follows you for a day.</p>",
+      "description": "<p>Animals think you smell like family. A stray cat or dog follows you for a day.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        71,
+        71
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "CCSsyIxtW0EBlsiJ",
+      "type": "text",
+      "text": "<p>For 1 hour, your shadow takes the shape of a wolf (or another beast of the DM's choice).</p>",
+      "description": "<p>For 1 hour, your shadow takes the shape of a wolf (or another beast of the DM's choice).</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        72,
+        72
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Kf5u0Z7mA4acJE5V",
+      "type": "text",
+      "text": "<p>For 1 day, you hear faint ocean waves whenever you tilt your head.</p>",
+      "description": "<p>For 1 day, you hear faint ocean waves whenever you tilt your head.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        73,
+        73
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "H9GGQywKv6PGgxyI",
+      "type": "text",
+      "text": "<p>For 1 hour, your fingertips leave tiny frost patterns on glass and metal.</p>",
+      "description": "<p>For 1 hour, your fingertips leave tiny frost patterns on glass and metal.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        74,
+        74
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "J27EBM9vGYkt8ZFg",
+      "type": "text",
+      "text": "<p>You smell like salt spray and seaweed for 24 hours.</p>",
+      "description": "<p>You smell like salt spray and seaweed for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        75,
+        75
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "3QY93AjrFFllNLv9",
+      "type": "text",
+      "text": "<p>For 1 hour, faint music plays whenever you enter a room. Everyone can hear it.</p>",
+      "description": "<p>For 1 hour, faint music plays whenever you enter a room. Everyone can hear it.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        76,
+        76
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "NczWtQas0KPmEIqO",
+      "type": "text",
+      "text": "<p>Your eyebrows vanish for 1d4 days.</p>",
+      "description": "<p>Your eyebrows vanish for 1d4 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        77,
+        77
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "G9JzhjVggkGZMYda",
+      "type": "text",
+      "text": "<p>Your hair turns the color of whatever you last drank for 1d4 days.</p>",
+      "description": "<p>Your hair turns the color of whatever you last drank for 1d4 days.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        78,
+        78
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "VuSvkqg4KvBxd3K7",
+      "type": "text",
+      "text": "<p>Gold flecks appear in your irises for 1 week.</p>",
+      "description": "<p>Gold flecks appear in your irises for 1 week.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        79,
+        79
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "BMpc50t3YsL7E6py",
+      "type": "text",
+      "text": "<p>For 1 hour, a faint second voice repeats everything you say a beat later.</p>",
+      "description": "<p>For 1 hour, a faint second voice repeats everything you say a beat later.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        80,
+        80
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Snt2EXpkwl8sIhHx",
+      "type": "text",
+      "text": "<p>For 1 day, your belly glows softly whenever you're hungry.</p>",
+      "description": "<p>For 1 day, your belly glows softly whenever you're hungry.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        81,
+        81
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "yehZvplrocPvjRfq",
+      "type": "text",
+      "text": "<p>Your next dream is unusually vivid and features you as an enormous, wise frog.</p>",
+      "description": "<p>Your next dream is unusually vivid and features you as an enormous, wise frog.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        82,
+        82
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ZhBZXjvSx7m6FoCi",
+      "type": "text",
+      "text": "<p>Every coin you carry smells strongly of mint for a day.</p>",
+      "description": "<p>Every coin you carry smells strongly of mint for a day.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        83,
+        83
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Rq3KwpLn2hFHqVxO",
+      "type": "text",
+      "text": "<p>Your skin feels like velvet to the touch for 24 hours.</p>",
+      "description": "<p>Your skin feels like velvet to the touch for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        84,
+        84
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Jtyfk0tPgIwFseto",
+      "type": "text",
+      "text": "<p>For 1 week, whenever you try to whistle, songbird calls come out instead.</p>",
+      "description": "<p>For 1 week, whenever you try to whistle, songbird calls come out instead.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        85,
+        85
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "hSrz4W21irbQPvzO",
+      "type": "text",
+      "text": "<p>Tiny harmless flames dance in your hair for 1 minute. They don't burn anything.</p>",
+      "description": "<p>Tiny harmless flames dance in your hair for 1 minute. They don't burn anything.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        86,
+        86
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "Rp0vMlh4TScckmsx",
+      "type": "text",
+      "text": "<p>You grow a short, furry tail (1d6 inches) for 24 hours.</p>",
+      "description": "<p>You grow a short, furry tail (1d6 inches) for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        87,
+        87
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ctNl0JSpAQvaZWrc",
+      "type": "text",
+      "text": "<p>For 10 minutes, a faint chime sounds every time you blink.</p>",
+      "description": "<p>For 10 minutes, a faint chime sounds every time you blink.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        88,
+        88
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "0LcpgXn4UfRyUZrf",
+      "type": "text",
+      "text": "<p>Your sweat is rainbow-colored for 1 day.</p>",
+      "description": "<p>Your sweat is rainbow-colored for 1 day.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        89,
+        89
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "6A5QTZMCdRAF5hVc",
+      "type": "text",
+      "text": "<p>For 1 hour, you're convinced you're 3 inches taller. Strangely, everyone else is convinced they've shrunk.</p>",
+      "description": "<p>For 1 hour, you're convinced you're 3 inches taller. Strangely, everyone else is convinced they've shrunk.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        90,
+        90
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "RXqH8NHpdwzmtiRP",
+      "type": "text",
+      "text": "<p>For 1 day, a few autumn leaves drift down around you whenever you sigh.</p>",
+      "description": "<p>For 1 day, a few autumn leaves drift down around you whenever you sigh.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        91,
+        91
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "ooFB6vs2iIuYHVkP",
+      "type": "text",
+      "text": "<p>You are extremely ticklish for 1 hour.</p>",
+      "description": "<p>You are extremely ticklish for 1 hour.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        92,
+        92
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "LCVZhrwmdrmRBhuD",
+      "type": "text",
+      "text": "<p>Faint glowing runes in an unknown language cover your skin for 1 hour, then fade.</p>",
+      "description": "<p>Faint glowing runes in an unknown language cover your skin for 1 hour, then fade.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        93,
+        93
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "wkea9UfS8IgEAlHa",
+      "type": "text",
+      "text": "<p>Your nose turns bright red and round for 1 hour. It honks when squeezed.</p>",
+      "description": "<p>Your nose turns bright red and round for 1 hour. It honks when squeezed.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        94,
+        94
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "5NM5OppibW0slN05",
+      "type": "text",
+      "text": "<p>For 1 hour, every candle flame within 10 feet of you leans toward you.</p>",
+      "description": "<p>For 1 hour, every candle flame within 10 feet of you leans toward you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        95,
+        95
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "kWZUulZtwIwZocJM",
+      "type": "text",
+      "text": "<p>For 8 hours, your voice seems to come from slightly behind you.</p>",
+      "description": "<p>For 8 hours, your voice seems to come from slightly behind you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        96,
+        96
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "YR46EEjsKeQkB8fc",
+      "type": "text",
+      "text": "<p>You smell like a wet dog for 8 hours. Dogs adore you.</p>",
+      "description": "<p>You smell like a wet dog for 8 hours. Dogs adore you.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        97,
+        97
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "BlSa01WArPFAuBPZ",
+      "type": "text",
+      "text": "<p>Your hair sets into a perfect, immovable sculpted shape for 24 hours.</p>",
+      "description": "<p>Your hair sets into a perfect, immovable sculpted shape for 24 hours.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        98,
+        98
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "4ksBIvmfuC84187M",
+      "type": "text",
+      "text": "<p>For 1 hour, small sprigs of clover sprout wherever you sit.</p>",
+      "description": "<p>For 1 hour, small sprigs of clover sprout wherever you sit.</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        99,
+        99
+      ],
+      "drawn": false,
+      "flags": {}
+    },
+    {
+      "_id": "YdPLsJ7DOsv2blQB",
+      "type": "text",
+      "text": "<p>Roll twice more on this table and combine the results (reroll any further 100s).</p>",
+      "description": "<p>Roll twice more on this table and combine the results (reroll any further 100s).</p>",
+      "img": "icons/svg/aura.svg",
+      "weight": 1,
+      "range": [
+        100,
+        100
+      ],
+      "drawn": false,
+      "flags": {}
+    }
+  ],
+  "formula": "1d100",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {}
+}

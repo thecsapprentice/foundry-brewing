@@ -1,0 +1,85 @@
+{
+  "id": "microbrew",
+  "title": "Microbrew",
+  "description": "Magical brewing for D&D 5e: a Microbrew Keg that brews ale from three ingredients, with Good, Bad and Cosmetic effect tables, a DM-run Recipe Book, and herb and plant ingredients by biome.",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "thecsapprentice",
+      "url": "https://github.com/thecsapprentice"
+    }
+  ],
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12.331"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "4.0.0",
+          "verified": "4.3.9"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/microbrew.mjs"
+  ],
+  "styles": [
+    "styles/microbrew.css"
+  ],
+  "socket": true,
+  "packs": [
+    {
+      "name": "microbrew-tables",
+      "label": "Microbrew: Brewing Tables",
+      "path": "packs/microbrew-tables",
+      "type": "RollTable",
+      "ownership": {
+        "PLAYER": "LIMITED",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "microbrew-items",
+      "label": "Microbrew: Kegs & Ingredients",
+      "path": "packs/microbrew-items",
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "microbrew-macros",
+      "label": "Microbrew: DM Tools",
+      "path": "packs/microbrew-macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "NONE",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Microbrew",
+      "sorting": "m",
+      "packs": [
+        "microbrew-tables",
+        "microbrew-items",
+        "microbrew-macros"
+      ]
+    }
+  ],
+  "languages": [],
+  "url": "https://github.com/thecsapprentice/foundry-brewing",
+  "manifest": "https://raw.githubusercontent.com/thecsapprentice/foundry-brewing/main/module.json",
+  "download": "https://github.com/thecsapprentice/foundry-brewing/raw/main/dist/microbrew.zip",
+  "readme": "https://github.com/thecsapprentice/foundry-brewing#readme",
+  "bugs": "https://github.com/thecsapprentice/foundry-brewing/issues"
+}
