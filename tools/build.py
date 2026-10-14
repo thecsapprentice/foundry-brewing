@@ -59,6 +59,7 @@ def load_biome(path):
     return mod
 
 DC = {"common": 10, "uncommon": 13, "rare": 16, "very rare": 19}
+RARITY_KEY = {"common": "common", "uncommon": "uncommon", "rare": "rare", "very rare": "veryRare"}  # dnd5e's rarity keys
 HEAVY = {"wood", "root_brown", "root_thorn", "root_blue"}
 
 def build_items():
@@ -89,7 +90,7 @@ def build_items():
                     "source": {"custom": f"Microbrew: {B.BIOME}", "book": "", "page": "", "license": ""},
                     "quantity": 1, "weight": {"value": 0.5 if icon in HEAVY else 0.1, "units": "lb"},
                     "price": {"value": price, "denomination": denom},
-                    "rarity": rarity, "identified": True,
+                    "rarity": RARITY_KEY[rarity], "identified": True,
                     "type": {"value": "material", "subtype": ""},
                 },
                 "effects": [], "folder": fid, "sort": 0, "ownership": {"default": 0},
@@ -103,11 +104,11 @@ def build_keg():
     """An empty Keg using the default tables. Give a Keg is the usual way to hand one out."""
     kid = stable_id("item", "Microbrew Keg")
     js = (ROOT / "scripts/keg.mjs").read_text(encoding="utf-8")
-    base = js.split("export const KEG_BASE_DESC = `", 1)[1].split("`;", 1)[0]
+    base = js.split("export const DEFAULT_DESCRIPTION = `", 1)[1].split("`;", 1)[0]
     return [(f"!items!{kid}", {
         "_id": kid, "name": "Microbrew Keg", "type": "consumable", "img": "icons/containers/barrels/barrel-walnut-steel-brown.webp",
         "system": {
-            "description": {"value": base + "<hr><p><em>The keg is empty. Brew something!</em></p>", "chat": ""},
+            "description": {"value": base + "\n<hr>\n<p>Use the <strong>Brew a Magic Ale</strong> activity, or @Microbrew[brew]{Brew a Magic Ale}.</p>\n<p><em>The keg is empty.</em></p>", "chat": ""},
             "quantity": 1, "weight": {"value": 15, "units": "lb"}, "price": {"value": 250, "denomination": "gp"},
             "rarity": "uncommon", "identified": True, "type": {"value": "trinket", "subtype": ""},
             "activities": {"brewKegActivity1": {
@@ -116,7 +117,7 @@ def build_keg():
                 "activation": {"type": "action", "value": 1, "condition": "", "override": False},
                 "duration": {"units": "inst", "concentration": False, "override": False},
                 "range": {"units": "self", "override": False},
-                "description": {"chatFlavor": "The keg gurgles and burbles as the ingredients go in..."},
+                "description": {"chatFlavor": ""},
             }},
         },
         "effects": [], "folder": None, "sort": 0, "ownership": {"default": 0}, "flags": {}, "_stats": STATS,
@@ -127,6 +128,8 @@ def build_keg():
 MACROS = [
     ("Microbrew: Give a Keg", "giveKeg", "icons/containers/barrels/barrel-walnut-steel-brown.webp",
      "Select one or more tokens, choose the tables, and each character gets a Microbrew Keg."),
+    ("Microbrew: Reskin a Keg", "reskinKeg", "icons/tools/hand/brush-paint-brown-white.webp",
+     "Change a Keg's name, icon, price, weight, description and wording (select a token carrying it, or use a Keg in the Items sidebar)."),
     ("Microbrew: Add a Recipe", "addRecipe", "icons/sundries/books/book-worn-brown.webp",
      "Write a recipe into the Recipe Book by hand."),
     ("Microbrew: Remove a Recipe", "removeRecipe", "icons/sundries/books/book-worn-brown.webp",

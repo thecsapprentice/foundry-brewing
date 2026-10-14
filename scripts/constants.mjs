@@ -27,3 +27,4 @@ export const FLAG_CONTENTS = "microbrew";
 export const FLAG_TABLES = "microbrewTables";
 export const FLAG_REQUEST = "microbrewRequest";
 export const FLAG_LEGACY_RECIPES = "microbrewRecipes";
+export const FLAG_SKIN = "microbrewSkin";

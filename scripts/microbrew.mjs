@@ -7,11 +7,11 @@ import {
   MODULE_ID, SOCKET, BREW_ACTIVITY_ID, DRINK_ACTIVITY_ID, KEG_IMG, ALE_IMG,
 } from "./constants.mjs";
 import { log } from "./util.mjs";
-import { isKeg, kegContents, kegDescription, kegOfControlled, drinkActivity } from "./keg.mjs";
+import { isKeg, kegContents, kegDescription, kegOfControlled, drinkActivity, skinOf } from "./keg.mjs";
 import { registerBookSettings, migrateLegacyRecipes, getRecipes, writeRecipePage } from "./book.mjs";
 import { startBrew, openRequest } from "./brew.mjs";
 import { drink } from "./drink.mjs";
-import { giveKeg, addRecipe, removeRecipe, clearRecipeBook } from "./admin.mjs";
+import { giveKeg, addRecipe, removeRecipe, clearRecipeBook, reskinKeg } from "./admin.mjs";
 
 const SETTING_MIGRATION = "migrationVersion";
 // Icon paths the macro-based version used that don't exist in Foundry's icon set
@@ -101,7 +101,7 @@ async function migrate() {
   for (const keg of kegs) {
     const c = kegContents(keg);
     const update = {
-      "system.description.value": kegDescription(c),
+      "system.description.value": kegDescription(c, skinOf(keg)),
       ...(OLD_ICONS.includes(keg.img) ? { img: KEG_IMG } : {}),
       // The module runs these activities itself now; stop Activity Macro running the old macros too.
       [`flags.activity-macro.-=${BREW_ACTIVITY_ID}`]: null,
@@ -111,7 +111,7 @@ async function migrate() {
       if (OLD_ICONS.includes(keg.system.activities?.get?.(id)?.img)) update[`system.activities.${id}.img`] = img;
     }
     if (c?.servings > 0 && !keg.system.activities?.get?.(DRINK_ACTIVITY_ID)) {
-      update[`system.activities.${DRINK_ACTIVITY_ID}`] = { ...drinkActivity(c.maxServings, c.name), uses: { spent: c.maxServings - c.servings, max: String(c.maxServings), recovery: [] } };
+      update[`system.activities.${DRINK_ACTIVITY_ID}`] = { ...drinkActivity(c.maxServings, c.name, skinOf(keg)), uses: { spent: c.maxServings - c.servings, max: String(c.maxServings), recovery: [] } };
     }
     await keg.update(update);
   }
@@ -135,7 +135,7 @@ Hooks.once("init", () => {
   document.addEventListener("click", onLinkClick, true);
 
   game.modules.get(MODULE_ID).api = {
-    giveKeg, addRecipe, removeRecipe, clearRecipeBook,
+    giveKeg, addRecipe, removeRecipe, clearRecipeBook, reskinKeg,
     brew: (keg) => {
       keg ??= kegOfControlled();
       return keg ? startBrew(keg) : ui.notifications.warn("Microbrew: select a token that carries a Microbrew Keg.");

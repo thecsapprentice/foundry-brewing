@@ -1,7 +1,7 @@
 // GM tools: Give a Keg, and Add / Remove / Clear recipes.
-import { KEG_NAME, TABLE_NAMES, FLAG_TABLES, SLOT_LABEL } from "./constants.mjs";
+import { KEG_NAME, KEG_IMG, TABLE_NAMES, FLAG_TABLES, FLAG_SKIN, SLOT_LABEL, BREW_ACTIVITY_ID, DRINK_ACTIVITY_ID } from "./constants.mjs";
 import { esc, ingKey, tableRange, rollOn, rollWithExtras, allTables, resolveTable, buttonDialog, readForm, titleCase } from "./util.mjs";
-import { newKegData, isKeg } from "./keg.mjs";
+import { newKegData, kegFromTemplate, isKeg, skinOf, kegContents, kegDescription, DEFAULT_SKIN, SKIN_FIELDS } from "./keg.mjs";
 import { getRecipes, setRecipes, slotDisplay } from "./book.mjs";
 
 const gmOnly = () => {
@@ -32,10 +32,16 @@ export async function giveKeg() {
   if (!choices.length) return ui.notifications.warn("Microbrew: no roll tables found. Is the Microbrew module's compendium available?");
   const withKeg = actors.filter((a) => a.items.some(isKeg));
   const row = (k) => `<div class="form-group"><label>${SLOT_LABEL[k]} effects</label>${tableSelect(k, choices, defaultUuid(choices, k))}</div>`;
+  const templates = game.items.filter(isKeg).sort((a, b) => a.name.localeCompare(b.name));
+  const templateRow = `<div class="form-group"><label>Look</label><select name="template">
+    <option value="">Default Microbrew Keg</option>
+    ${templates.map((t) => `<option value="${t.id}">${esc(t.name)} (Items sidebar)</option>`).join("")}
+  </select><p class="hint">A Keg in the Items sidebar can be reskinned (Microbrew: Reskin a Keg) and used as the template for new ones.</p></div>`;
   const choice = await buttonDialog({
     title: "Microbrew — Give a Keg",
     content: `<form>
   <p>Giving a Microbrew Keg to <strong>${actors.map((a) => esc(a.name)).join(", ")}</strong>. Choose the tables it brews from:</p>
+  ${templateRow}
   ${row("good")}${row("bad")}${row("cosmetic")}
   <p class="hint">Tables can come from the world or any compendium. A result that says "roll twice more" draws two extra results from the same table. Tier names (Trivial … Legendary) only appear for the default Brewing Results tables.</p>
   ${withKeg.length ? `<div class="form-group"><label>Update existing Kegs</label><input type="checkbox" name="repoint">
@@ -68,7 +74,8 @@ export async function giveKeg() {
       repointed.push(a.name);
       continue;
     }
-    await a.createEmbeddedDocuments("Item", [newKegData(uuids)]);
+    const template = picked.template ? game.items.get(picked.template) : null;
+    await a.createEmbeddedDocuments("Item", [template ? kegFromTemplate(template, uuids) : newKegData(uuids)]);
     given.push(a.name);
   }
   if (given.length) ui.notifications.info(`Microbrew: gave a Keg to ${given.join(", ")} (${names}).`);
@@ -245,4 +252,136 @@ export async function clearRecipeBook() {
   if (!ok) return;
   await setRecipes({});
   ui.notifications.info(`Microbrew: cleared ${count} recipe${count === 1 ? "" : "s"} from the Recipe Book.`);
+}
+
+/* -------------------------------------------- */
+/*  Reskin a Keg                                */
+/* -------------------------------------------- */
+
+const RARITIES = { common: "Common", uncommon: "Uncommon", rare: "Rare", veryRare: "Very Rare", legendary: "Legendary", artifact: "Artifact" };
+const DENOMS = ["cp", "sp", "ep", "gp", "pp"];
+const WORDING = [
+  ["container", "Container", "keg → kit, cauldron, still"],
+  ["product", "What it makes", "ale → potion, tonic"],
+  ["portion", "One portion", "serving → dose, draught"],
+  ["portions", "Several portions", "servings → doses"],
+  ["brewAction", "Brew activity name", "Brew a Magic Ale → Brew a Potion"],
+  ["drinkAction", "Drink activity name", "Drink Brew → Drink Potion"],
+  ["brewVerb", "Brewing verb", "brews → concocts, distills"],
+  ["drinkVerb", "Drinking verb", "drinks → quaffs, downs"],
+];
+
+/** Pick which Keg to reskin: Kegs carried by selected tokens, then Kegs in the Items sidebar. */
+async function pickKeg() {
+  const owned = (canvas.tokens?.controlled ?? []).flatMap((t) => t.actor?.items.filter(isKeg) ?? []);
+  const sidebar = game.items.filter(isKeg);
+  const all = [...new Set([...owned, ...sidebar])];
+  if (!all.length) {
+    ui.notifications.warn("Microbrew: select a token carrying a Keg, or put a Keg in the Items sidebar (drag one from the Microbrew compendium).");
+    return null;
+  }
+  if (all.length === 1) return all[0];
+  const choice = await buttonDialog({
+    title: "Microbrew — Reskin a Keg",
+    content: `<form><div class="form-group"><label>Keg</label><select name="keg">
+      ${all.map((k, i) => `<option value="${i}">${esc(k.name)} — ${k.actor ? esc(k.actor.name) : "Items sidebar"}</option>`).join("")}
+    </select></div></form>`,
+    buttons: { next: { icon: '<i class="fas fa-arrow-right"></i>', label: "Next" }, cancel: { icon: '<i class="fas fa-times"></i>', label: "Cancel" } },
+    defaultButton: "next",
+  });
+  return choice.action === "next" ? all[Number(readForm(choice.html).keg)] : null;
+}
+
+export async function reskinKeg(keg = null) {
+  if (!gmOnly()) return;
+  keg ??= await pickKeg();
+  if (!keg) return;
+  const skin = skinOf(keg);
+  const val = (v) => (v === undefined || v === null ? "" : esc(v));
+  const sys = keg.system;
+  const content = (cur, error) => `
+<form class="microbrew-reskin">
+  ${error ? `<p class="notification error" style="margin:0 0 6px">${esc(error)}</p>` : ""}
+  <p>Everything here belongs to this one ${esc(cur.name)}. Chat cards, dialogs and the description will use this wording. Leave a wording field blank to use the default.</p>
+  <fieldset><legend>Item</legend>
+    <div class="form-group"><label>Name</label><input type="text" name="name" value="${val(cur.name)}"></div>
+    <div class="form-group"><label>Icon</label><input type="text" name="img" value="${val(cur.img)}"><button type="button" data-pick="img" style="flex:0 0 2em" title="Browse"><i class="fas fa-file-image"></i></button></div>
+    <div class="form-group"><label>Price</label><input type="number" name="price" min="0" step="any" value="${val(cur.price)}">
+      <select name="denomination">${DENOMS.map((d) => `<option value="${d}" ${d === cur.denomination ? "selected" : ""}>${d}</option>`).join("")}</select></div>
+    <div class="form-group"><label>Weight (lb)</label><input type="number" name="weight" min="0" step="any" value="${val(cur.weight)}"></div>
+    <div class="form-group"><label>Rarity</label><select name="rarity">${Object.entries(RARITIES).map(([k, l]) => `<option value="${k}" ${k === cur.rarity ? "selected" : ""}>${l}</option>`).join("")}</select></div>
+  </fieldset>
+  <fieldset><legend>Description</legend>
+    <textarea name="description" rows="7" style="width:100%;font-family:monospace;font-size:12px">${val(cur.description)}</textarea>
+    <p class="hint">HTML is allowed. Microbrew adds a section below this with the ${esc(cur.brewAction || DEFAULT_SKIN.brewAction)} link and whatever is inside. Edit the description here, not on the item sheet: the item sheet's description is rewritten on every brew.</p>
+  </fieldset>
+  <fieldset><legend>Wording</legend>
+    ${WORDING.map(([k, label, hint]) => `<div class="form-group"><label>${label}</label><input type="text" name="${k}" value="${val(cur[k])}" placeholder="${esc(DEFAULT_SKIN[k])}" title="${esc(hint)}"></div>`).join("")}
+    <div class="form-group"><label>Drink activity icon</label><input type="text" name="drinkImg" value="${val(cur.drinkImg)}" placeholder="${esc(DEFAULT_SKIN.drinkImg)}"><button type="button" data-pick="drinkImg" style="flex:0 0 2em" title="Browse"><i class="fas fa-file-image"></i></button></div>
+  </fieldset>
+</form>`;
+  const render = (html) => {
+    const root = html[0] ?? html;
+    root.querySelectorAll?.("button[data-pick]").forEach((btn) => btn.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      const input = root.querySelector(`input[name="${btn.dataset.pick}"]`);
+      new FilePicker({ type: "image", current: input.value, callback: (path) => { input.value = path; } }).render(true);
+    }));
+  };
+
+  let cur = {
+    name: keg.name, img: keg.img, price: sys.price?.value ?? 0, denomination: sys.price?.denomination ?? "gp",
+    weight: sys.weight?.value ?? 0, rarity: sys.rarity || "uncommon", ...skin,
+  };
+  let error = null;
+  while (true) {
+    const choice = await buttonDialog({
+      title: `Microbrew — Reskin ${keg.name}`, content: content(cur, error), render, width: 520, defaultButton: "save",
+      buttons: {
+        save: { icon: '<i class="fas fa-paintbrush"></i>', label: "Save" },
+        reset: { icon: '<i class="fas fa-rotate-left"></i>', label: "Reset to Default" },
+        cancel: { icon: '<i class="fas fa-times"></i>', label: "Cancel" },
+      },
+    });
+    if (choice.action === "cancel" || choice.action === "close") return null;
+    if (choice.action === "reset") {
+      const ok = await Dialog.confirm({
+        title: "Microbrew — Reset Look",
+        content: `<p>Reset <strong>${esc(keg.name)}</strong> to the default Microbrew Keg look and wording? Its tables and anything inside it are kept.</p>`,
+        defaultYes: false,
+      });
+      if (!ok) continue;
+      cur = { name: KEG_NAME, img: KEG_IMG, price: 250, denomination: "gp", weight: 15, rarity: "uncommon", ...DEFAULT_SKIN };
+      break;
+    }
+    const d = readForm(choice.html);
+    cur = { ...cur, ...d };
+    const price = Number(d.price), weight = Number(d.weight);
+    if (!String(d.name ?? "").trim()) error = "The item needs a name.";
+    else if (!Number.isFinite(price) || price < 0) error = "Price must be a number of 0 or more.";
+    else if (!Number.isFinite(weight) || weight < 0) error = "Weight must be a number of 0 or more.";
+    else { error = null; break; }
+  }
+
+  const newSkin = {};
+  for (const k of SKIN_FIELDS) newSkin[k] = String(cur[k] ?? "").trim() || DEFAULT_SKIN[k];
+  const name = String(cur.name).trim(), img = String(cur.img).trim() || KEG_IMG;
+  const update = {
+    name, img,
+    "system.price.value": Number(cur.price), "system.price.denomination": cur.denomination,
+    "system.weight.value": Number(cur.weight), "system.rarity": cur.rarity,
+    [`flags.world.${FLAG_SKIN}`]: newSkin,
+    "system.description.value": kegDescription(kegContents(keg), newSkin),
+  };
+  if (keg.system.activities?.get?.(BREW_ACTIVITY_ID)) {
+    update[`system.activities.${BREW_ACTIVITY_ID}.name`] = newSkin.brewAction;
+    update[`system.activities.${BREW_ACTIVITY_ID}.img`] = img;
+  }
+  if (keg.system.activities?.get?.(DRINK_ACTIVITY_ID)) {
+    update[`system.activities.${DRINK_ACTIVITY_ID}.name`] = newSkin.drinkAction;
+    update[`system.activities.${DRINK_ACTIVITY_ID}.img`] = newSkin.drinkImg;
+  }
+  await keg.update(update);
+  ui.notifications.info(`Microbrew: reskinned ${keg.actor ? `${keg.actor.name}'s ` : ""}${name}.`);
+  return keg;
 }

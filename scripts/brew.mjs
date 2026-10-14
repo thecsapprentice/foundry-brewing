@@ -1,11 +1,11 @@
 // Brewing: players send a request; the DM fills in the recipe and the Keg is filled.
 import {
-  SOCKET, KEG_NAME, DRINK_ACTIVITY_ID, DEFAULT_SERVINGS, TABLE_NAMES, SLOT_LABEL, FLAG_CONTENTS, FLAG_TABLES, FLAG_REQUEST,
+  SOCKET, DRINK_ACTIVITY_ID, DEFAULT_SERVINGS, TABLE_NAMES, SLOT_LABEL, FLAG_CONTENTS, FLAG_TABLES, FLAG_REQUEST,
 } from "./constants.mjs";
 import {
   esc, textFor, ingKey, tableRange, dieOf, rollOn, rollWithExtras, resolveTable, buttonDialog, readForm, titleCase,
 } from "./util.mjs";
-import { kegContents, kegDescription, drinkActivity } from "./keg.mjs";
+import { kegContents, kegDescription, drinkActivity, skinOf, countOf } from "./keg.mjs";
 import { getRecipes, setRecipes } from "./book.mjs";
 
 const tierGood = (v) => (v <= 6 ? "Trivial" : v <= 12 ? "Minor" : v <= 18 ? "Moderate" : v <= 24 ? "Strong" : v <= 29 ? "Major" : "Legendary");
@@ -17,8 +17,8 @@ const tierBad = (v) => (v === 1 ? "Catastrophic" : v <= 6 ? "Major" : v <= 12 ? 
 
 /** Start a brew in a Keg: GMs get the dialog, players send the DM a request. */
 export async function startBrew(keg) {
-  if (!keg?.actor) return ui.notifications.warn("Microbrew: the Keg must be in a character's inventory to brew.");
-  if (!keg.isOwner) return ui.notifications.warn(`Microbrew: you don't own ${keg.actor.name}'s Keg.`);
+  if (!keg?.actor) return ui.notifications.warn(`Microbrew: the ${keg?.name ?? "Keg"} must be in a character's inventory to brew.`);
+  if (!keg.isOwner) return ui.notifications.warn(`Microbrew: you don't own ${keg.actor.name}'s ${keg.name}.`);
   if (game.user.isGM) return brew(keg);
   return requestBrew(keg);
 }
@@ -32,7 +32,7 @@ async function requestBrew(keg) {
     whisper: gmIds,
     content: `
 <h3>🍺 Brewing Request</h3>
-<p><strong>${esc(brewer.name)}</strong> starts a new batch in their ${KEG_NAME}.</p>
+<p><strong>${esc(brewer.name)}</strong> starts a new batch in their ${esc(keg.name)}.</p>
 <p style="text-align:center;font-size:1.15em">@Microbrew[request]{Open the brewing dialog}</p>
 <p><em>Only the DM can complete the brew.</em></p>`,
     flags: { world: { [FLAG_REQUEST]: { kegUuid: keg.uuid, requestedBy: game.user.id, status: "pending" } } },
@@ -80,6 +80,8 @@ export async function brew(keg, { request = null } = {}) {
 
 async function _brew(keg, request) {
   const brewer = keg.actor;
+  const skin = skinOf(keg);
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
   // ---- This Keg's tables ----
   const chosen = keg.getFlag("world", FLAG_TABLES) ?? {};
@@ -112,7 +114,7 @@ async function _brew(keg, request) {
   // ---- Dialog ----
   const current = kegContents(keg);
   const warning = current?.servings > 0
-    ? `<p class="notification warning" style="margin:0 0 6px">The keg still holds <strong>${current.servings}</strong> serving(s) of <em>${esc(current.name)}</em>. Brewing pours it out.</p>`
+    ? `<p class="notification warning" style="margin:0 0 6px">The ${esc(skin.container)} still holds <strong>${countOf(current.servings, skin)}</strong> of <em>${esc(current.name)}</em>. Brewing pours it out.</p>`
     : "";
   const inventory = brewer.items.filter((i) => i.id !== keg.id).map((i) => `<option value="${esc(i.name)}"></option>`).join("");
   const val = (v) => (v === undefined || v === null ? "" : esc(v));
@@ -127,7 +129,7 @@ async function _brew(keg, request) {
   <div class="form-group"><label>Consume ingredients</label><input type="checkbox" name="consume" ${prev.consume === undefined || prev.consume ? "checked" : ""}>
     <p class="hint">Removes one of each ingredient from inventory if an item with that exact name exists.</p></div>
   <div class="form-group"><label>Brew name</label><input type="text" name="brewName" placeholder="(automatic)" value="${val(prev.brewName)}"></div>
-  <div class="form-group"><label>Servings</label><input type="number" name="servings" min="1" max="20" value="${val(prev.servings ?? DEFAULT_SERVINGS)}"></div>
+  <div class="form-group"><label>${esc(cap(skin.portions))}</label><input type="number" name="servings" min="1" max="20" value="${val(prev.servings ?? DEFAULT_SERVINGS)}"></div>
   <hr>
   <p class="microbrew-recipe" style="margin:4px 0;padding:4px 6px;border:1px dashed var(--color-border-light-tertiary, #999);border-radius:4px">📖 Type the ingredients to check the Recipe Book.</p>
   <div class="form-group"><label>Overwrite known recipe</label><input type="checkbox" name="overwrite" ${prev.overwrite ? "checked" : ""}>
@@ -155,7 +157,7 @@ async function _brew(keg, request) {
     if (ings.some((x) => !x)) return "All three ingredients need a name.";
     if (new Set(ings.map((x) => x.toLowerCase())).size < 3) return "The three ingredients must be different.";
     const sv = Number(String(d.servings ?? "").trim() || DEFAULT_SERVINGS);
-    if (!Number.isInteger(sv) || sv < 1 || sv > 20) return "Servings must be a whole number from 1 to 20.";
+    if (!Number.isInteger(sv) || sv < 1 || sv > 20) return `${cap(skin.portions)} must be a whole number from 1 to 20.`;
     for (const key of Object.keys(RANGE)) {
       const raw = String(d[key] ?? "").trim();
       if (!raw) continue;
@@ -176,7 +178,7 @@ async function _brew(keg, request) {
 
   let data = null, error = null, prev = {};
   while (true) {
-    const choice = await buttonDialog({ title: `Microbrew Keg — ${brewer.name}`, content: content(prev, error), buttons, defaultButton: "brew", render: onRender });
+    const choice = await buttonDialog({ title: `${keg.name} — ${brewer.name}`, content: content(prev, error), buttons, defaultButton: "brew", render: onRender });
     if (choice.action === "later" || choice.action === "close") return null;
     if (choice.action === "deny") {
       await request.msg.update({
@@ -249,12 +251,12 @@ async function _brew(keg, request) {
   }
 
   // ---- Fill the Keg ----
-  const brewName = (data.brewName ?? "").trim() || (reuse ? known.name : "") || `${ingredients.map(titleCase).join(", ")} Ale`;
+  const brewName = (data.brewName ?? "").trim() || (reuse ? known.name : "") || `${ingredients.map(titleCase).join(", ")} ${titleCase(skin.product)}`;
   const contents = { name: brewName, brewer: brewer.name, ingredients, servings, maxServings: servings, good, bad, cosmetic, brewedAt: Date.now() };
   const update = {
     [`flags.world.${FLAG_CONTENTS}`]: contents,
-    "system.description.value": kegDescription(contents),
-    [`system.activities.${DRINK_ACTIVITY_ID}`]: drinkActivity(servings, brewName),
+    "system.description.value": kegDescription(contents, skin),
+    [`system.activities.${DRINK_ACTIVITY_ID}`]: drinkActivity(servings, brewName, skin),
   };
   await keg.update(update);
 
@@ -282,7 +284,7 @@ async function _brew(keg, request) {
   if (request) {
     await request.msg.update({
       [`flags.world.${FLAG_REQUEST}.status`]: "brewed",
-      content: `<h3>🍺 Brewing Request</h3><p><strong>${esc(brewer.name)}</strong>'s batch is done: <em>${esc(brewName)}</em> (${servings} servings).</p>`,
+      content: `<h3>🍺 Brewing Request</h3><p><strong>${esc(brewer.name)}</strong>'s batch is done: <em>${esc(brewName)}</em> (${countOf(servings, skin)}).</p>`,
     });
   }
 
@@ -293,9 +295,9 @@ async function _brew(keg, request) {
     speaker: ChatMessage.getSpeaker({ actor: brewer }),
     content: `
 <h3>🍺 ${esc(brewName)}</h3>
-<p>${esc(brewer.name)} brews ${esc(ingredients.join(", "))} into a fresh keg: <strong>${servings} servings</strong> on tap.</p>
+<p>${esc(brewer.name)} ${esc(skin.brewVerb)} ${esc(ingredients.join(", "))} into a fresh ${esc(skin.container)}: <strong>${countOf(servings, skin)}</strong> ready.</p>
 ${reuse ? `<p><em>📖 A familiar recipe: it comes out just like last time.</em></p>` : ""}
-${current?.servings > 0 ? `<p><em>The last ${current.servings} serving(s) of ${esc(current.name)} were poured out.</em></p>` : ""}
+${current?.servings > 0 ? `<p><em>The last ${countOf(current.servings, skin)} of ${esc(current.name)} ${current.servings === 1 ? "was" : "were"} poured out.</em></p>` : ""}
 <p><strong>Good</strong> (${how(good)}): ${joined(good)}</p>
 <p><strong>Bad</strong> (${how(bad)}): ${joined(bad)}</p>
 <p><strong>Cosmetic</strong> (${how(cosmetic)}): ${joined(cosmetic)}</p>
