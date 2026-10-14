@@ -9,6 +9,7 @@ import path from "node:path";
 
 const dir = path.dirname(fileURLToPath(import.meta.url));
 const suites = [
+  ["test-packs.mjs", {}],
   ["test-module.mjs", {}],
   ["test-reskin.mjs", {}],
   ["test-safety.mjs", {}],

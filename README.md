@@ -26,7 +26,17 @@ Then enable **Microbrew** in your world. It requires **[libWrapper](https://foun
 
 | Biome | Ingredients |
 |---|---|
+| Arid Desert | 36 (21 real, 15 fantasy) |
 | Boreal Highlands | 36 (22 real, 14 fantasy) |
+| Coast & Shore | 36 (22 real, 14 fantasy) |
+| Farmland & Gardens | 34 (32 real, 2 fantasy): market and apothecary staples, including hops and brewing grains |
+| Feywild & Enchanted Groves | 35 (4 real, 31 fantasy) |
+| Grasslands & Steppe | 36 (22 real, 14 fantasy) |
+| Temperate Woodland | 37 (24 real, 13 fantasy) |
+| Tropical Jungle | 36 (22 real, 14 fantasy) |
+| Underdark & Caverns | 36 (6 real, 30 fantasy) |
+| Wetlands & Bogs | 36 (22 real, 14 fantasy) |
+| **Total** | **358** |
 
 Each ingredient is a dnd5e **Material** item with habitat, a Wisdom (Survival) harvesting DC by rarity, and lore. No ingredient name repeats across biomes.
 
@@ -125,7 +135,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.1.1
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.2.0
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.

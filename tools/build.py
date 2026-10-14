@@ -52,9 +52,16 @@ def build_tables():
 
 
 # ---------------------------------------------------------------- items
-def load_biome(path):
+def load_icons():
+    spec = importlib.util.spec_from_file_location("icons", ROOT / "data/icons.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.ICONS
+
+def load_biome(path, icons):
     spec = importlib.util.spec_from_file_location(path.stem, path)
     mod = importlib.util.module_from_spec(spec)
+    mod.ICONS = icons  # biome files use the shared, verified icon list
     spec.loader.exec_module(mod)
     return mod
 
@@ -65,8 +72,15 @@ HEAVY = {"wood", "root_brown", "root_thorn", "root_blue"}
 def build_items():
     entries, seen = [], {}
     sort_folder = 0
+    icons = load_icons()
+    verified = set(icons.values())
     for path in sorted((ROOT / "data/biomes").glob("*.py")):
-        B = load_biome(path)
+        if path.name.startswith("_"):
+            continue
+        B = load_biome(path, icons)
+        bad = sorted({p for p in B.I.values() if p not in verified})
+        if bad:
+            sys.exit(f"{path.name}: icons not in data/icons.py (unverified): {bad}")
         fid = stable_id("folder", B.BIOME)
         sort_folder += 100000
         entries.append((f"!folders!{fid}", {
