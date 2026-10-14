@@ -199,7 +199,12 @@ def main():
         "version": args.version,
         "authors": [{"name": owner, "url": f"https://github.com/{owner}"}],
         "compatibility": {"minimum": "12", "verified": CORE_VERSION},
-        "relationships": {"systems": [{"id": "dnd5e", "type": "system", "compatibility": {"minimum": "4.0.0", "verified": SYSTEM_VERSION}}]},
+        "relationships": {
+            "systems": [{"id": "dnd5e", "type": "system", "compatibility": {"minimum": "4.0.0", "verified": SYSTEM_VERSION}}],
+            "requires": [{"id": "lib-wrapper", "type": "module",
+                          "manifest": "https://github.com/ruipin/fvtt-lib-wrapper/releases/latest/download/module.json",
+                          "compatibility": {"minimum": "1.12.0"}}],
+        },
         "esmodules": ["scripts/microbrew.mjs"],
         "styles": ["styles/microbrew.css"],
         "socket": True,

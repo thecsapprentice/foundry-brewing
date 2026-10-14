@@ -149,7 +149,50 @@ Hooks.once("init", () => {
   log("initialized");
 });
 
+/* -------------------------------------------- */
+/*  The Keg's activities                        */
+/* -------------------------------------------- */
+
+const KEG_ACTIVITIES = [BREW_ACTIVITY_ID, DRINK_ACTIVITY_ID];
+let wrapperActive = false;
+
+/** Run a Keg activity on the real, embedded Keg (never on a temporary clone). */
+function runKegActivity(item, activityId) {
+  const keg = item.actor?.items.get(item.id) ?? item;
+  if (!keg.isEmbedded && !keg.actor) return ui.notifications.warn("Microbrew: the Keg must be in a character's inventory.");
+  if (activityId === BREW_ACTIVITY_ID) return startBrew(keg);
+  if (activityId === DRINK_ACTIVITY_ID) return drink(keg);
+}
+
+/**
+ * With libWrapper, take over the Keg's two activities at the source: the utility activity's use().
+ * They never enter dnd5e's (or Midi-QOL's) usage workflow, so there is no usage card,
+ * consumption or targeting to conflict with. Every other activity passes straight through.
+ * Registered at "ready", after other modules have swapped in their own activity classes.
+ */
+function registerActivityWrapper() {
+  if (typeof libWrapper === "undefined") return false;
+  const cls = CONFIG.DND5E?.activityTypes?.utility?.documentClass;
+  if (!cls?.prototype?.use) {
+    console.warn(`${MODULE_ID} | couldn't find dnd5e's utility activity class; using the dnd5e.postUseActivity hook instead`);
+    return false;
+  }
+  try {
+    libWrapper.register(MODULE_ID, "CONFIG.DND5E.activityTypes.utility.documentClass.prototype.use", function (wrapped, ...args) {
+      if (KEG_ACTIVITIES.includes(this.id) && isKeg(this.item)) return runKegActivity(this.item, this.id);
+      return wrapped(...args);
+    }, "MIXED");
+  } catch (e) {
+    // e.g. another module holds an OVERRIDE wrapper on the same method
+    console.warn(`${MODULE_ID} | libWrapper registration failed; using the dnd5e.postUseActivity hook instead`, e);
+    return false;
+  }
+  log(`wrapped ${cls.name}.prototype.use with libWrapper`);
+  return true;
+}
+
 Hooks.once("ready", async () => {
+  wrapperActive = registerActivityWrapper();
   registerSocket();
   try {
     await migrate();
@@ -158,10 +201,10 @@ Hooks.once("ready", async () => {
   }
 });
 
-// The Keg's own activities, no Activity Macro needed.
+// Fallback when libWrapper isn't available: react after dnd5e finishes using the activity.
+// dnd5e passes an activity on a temporary clone of the item, so runKegActivity looks up the real Keg.
 Hooks.on("dnd5e.postUseActivity", (activity) => {
-  const item = activity?.item;
-  if (!isKeg(item)) return;
-  if (activity.id === BREW_ACTIVITY_ID) return startBrew(item);
-  if (activity.id === DRINK_ACTIVITY_ID) return drink(item);
+  if (wrapperActive) return;
+  if (!KEG_ACTIVITIES.includes(activity?.id) || !isKeg(activity?.item)) return;
+  return runKegActivity(activity.item, activity.id);
 });

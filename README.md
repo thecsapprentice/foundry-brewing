@@ -12,7 +12,7 @@ In Foundry's **Add-on Modules → Install Module**, paste this manifest URL:
 https://raw.githubusercontent.com/thecsapprentice/foundry-brewing/main/module.json
 ```
 
-Then enable **Microbrew** in your world. No other modules are needed.
+Then enable **Microbrew** in your world. It requires **[libWrapper](https://foundryvtt.com/packages/lib-wrapper)**, which Foundry offers to install alongside it.
 
 ## What's inside
 
@@ -60,7 +60,7 @@ Recipes from the old journal-based Recipe Book are moved into the module. You ca
 
 ## Notes
 
-- **Midi-QOL:** Microbrew listens for dnd5e's `dnd5e.postUseActivity` hook. If Midi-QOL is installed and a Keg's activities don't open anything, use the links in the Keg's description.
+- **Midi-QOL and other automation:** Microbrew uses libWrapper to take over the Keg's two activities (Brew a Magic Ale, Drink Brew) at the start of the utility activity's `use()`. They never enter dnd5e's or Midi-QOL's usage workflow, so there's no usage card, consumption or targeting to conflict with. Every other activity passes through untouched. If libWrapper registration fails (for example, another module holds an `OVERRIDE` wrapper on the same method), Microbrew falls back to dnd5e's `dnd5e.postUseActivity` hook. The links in the Keg's description always work too.
 - **API:** `game.modules.get("microbrew").api` exposes `giveKeg()`, `addRecipe()`, `removeRecipe()`, `clearRecipeBook()`, `brew(keg?)`, `drink(keg?)` and `isKeg(item)`.
 
 ## Building
@@ -77,7 +77,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.0.0
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.0.1
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.
