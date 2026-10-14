@@ -45,7 +45,7 @@ Each ingredient is a dnd5e **Material** item with habitat, a Wisdom (Survival) h
 - **Give a Keg** (DM): select tokens, run the macro, and choose the Good, Bad and Cosmetic tables. Tables can come from the world or any compendium. Under **Look**, pick the default Keg or any reskinned Keg in your Items sidebar to use as a template.
 - **Brew a Magic Ale**: use the Keg's activity, or the link in its description.
   - A **player** sends the DM a request. The brewing dialog pops up on the DM's screen, and a whispered card is kept in chat as a backup.
-  - The **DM** enters three ingredients, an optional name, the servings (default 4), and optionally fixed rolls. They can then **Brew!**, **Deny Request** or **Decide Later**.
+  - The **DM** enters three ingredients (type them, pick from the character's inventory, or drag an item onto the field), an optional name, the servings (default 4), and optionally fixed rolls. They can then **Brew!**, **Deny Request** or **Decide Later**.
   - Brewing again pours out what's left.
 - **Drink Brew**: each use pours one serving and posts the three effects to chat. If you select another character's token first, that character drinks from the Keg. When the Keg is empty, the Drink activity disappears.
 
@@ -135,7 +135,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.2.1
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.2.2
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.

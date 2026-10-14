@@ -3,7 +3,7 @@ import {
   SOCKET, DRINK_ACTIVITY_ID, DEFAULT_SERVINGS, TABLE_NAMES, SLOT_LABEL, FLAG_CONTENTS, FLAG_TABLES, FLAG_REQUEST,
 } from "./constants.mjs";
 import {
-  esc, textFor, ingKey, tableRange, dieOf, rollOn, rollWithExtras, resolveTable, buttonDialog, readForm, titleCase,
+  esc, textFor, ingKey, tableRange, dieOf, rollOn, rollWithExtras, resolveTable, buttonDialog, readForm, titleCase, acceptItemDrop,
 } from "./util.mjs";
 import { kegContents, kegDescription, drinkActivity, skinOf, countOf, isKeg } from "./keg.mjs";
 
@@ -125,10 +125,10 @@ async function _brew(keg, request) {
 <form class="microbrew">
   ${error ? `<p class="notification error" style="margin:0 0 6px">${esc(error)}</p>` : ""}
   ${warning}
-  <p>Name three <strong>different</strong> ingredients. Leave a roll blank to roll it randomly.</p>
+  <p>Name three <strong>different</strong> ingredients: type, pick from ${esc(brewer.name)}'s inventory, or drag an item onto the field. Leave a roll blank to roll it randomly.</p>
   <p class="hint">Tables: ${Object.keys(SLOT_LABEL).map((k) => `${SLOT_LABEL[k]}: <em>${esc(tables[k].name)}</em>`).join(" · ")}</p>
   <datalist id="microbrew-inv">${inventory}</datalist>
-  ${[1, 2, 3].map((n) => `<div class="form-group"><label>Ingredient ${n}</label><input type="text" name="ing${n}" list="microbrew-inv" value="${val(prev[`ing${n}`])}" ${n === 1 ? "autofocus" : ""}></div>`).join("")}
+  ${[1, 2, 3].map((n) => `<div class="form-group"><label>Ingredient ${n}</label><input type="text" name="ing${n}" list="microbrew-inv" value="${val(prev[`ing${n}`])}" placeholder="type, pick, or drop an item" ${n === 1 ? "autofocus" : ""}></div>`).join("")}
   <div class="form-group"><label>Consume ingredients</label><input type="checkbox" name="consume" ${prev.consume === undefined || prev.consume ? "checked" : ""}>
     <p class="hint">Removes one of each ingredient from inventory if a loot or consumable item with that name exists. Weapons, armor, equipped items and other gear are never touched.</p></div>
   <div class="form-group"><label>Brew name</label><input type="text" name="brewName" placeholder="(automatic)" value="${val(prev.brewName)}"></div>
@@ -141,9 +141,11 @@ async function _brew(keg, request) {
 </form>`;
   const onRender = (html) => {
     const root = html[0] ?? html;
+    const inputs = ["ing1", "ing2", "ing3"].map((n) => root.querySelector?.(`input[name="${n}"]`));
+    // Dropping an item fills in its name; the inventory list (datalist) still works as before.
+    inputs.forEach(acceptItemDrop);
     const status = root.querySelector?.(".microbrew-recipe");
     if (!status) return;
-    const inputs = ["ing1", "ing2", "ing3"].map((n) => root.querySelector(`input[name="${n}"]`));
     const refresh = () => {
       const ings = inputs.map((i) => (i?.value ?? "").trim());
       if (ings.some((x) => !x)) return (status.innerHTML = "📖 Type the ingredients to check the Recipe Book.");
