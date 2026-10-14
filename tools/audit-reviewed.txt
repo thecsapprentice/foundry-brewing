@@ -17,6 +17,8 @@ DELETE	microbrew.mjs	[`flags.activity-macro.-=${BREW_ACTIVITY_ID}`]: null,
 DELETE	microbrew.mjs	[`flags.activity-macro.-=${DRINK_ACTIVITY_ID}`]: null,
 GLOBAL	microbrew.mjs	CONFIG.TextEditor.enrichers.push({
 GLOBAL	microbrew.mjs	document.addEventListener("click", onLinkClick, true);
+GLOBAL	util.mjs	const item = globalThis.fromUuidSync?.(data.uuid) ?? (await fromUuid(data.uuid));
+GLOBAL	util.mjs	data = globalThis.TextEditor?.getDragEventData?.(ev) ?? JSON.parse(ev.dataTransfer?.getData("text/plain") || "null");
 PERMISSION	book.mjs	ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
 PERMISSION	keg.mjs	delete data.ownership;
 SETTING	book.mjs	await game.settings.set(MODULE_ID, SETTING_RECIPES, current);

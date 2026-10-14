@@ -103,3 +103,46 @@ export function readForm(root) {
 }
 
 export const titleCase = (s) => s.replace(/(^|\s)\S/g, (c) => c.toUpperCase());
+
+/**
+ * Let an input accept a dragged Item (from the Items sidebar, a compendium or a character sheet)
+ * and fill in the item's name. Read-only: the dropped item is looked up, never changed.
+ * Anything that isn't an Item is ignored, and the browser's default text drop is suppressed
+ * so the raw drag data never ends up in the field.
+ */
+export function acceptItemDrop(input) {
+  if (!input) return;
+  input.addEventListener("dragover", (ev) => {
+    ev.preventDefault();
+    input.classList.add("microbrew-drop-hover");
+  });
+  input.addEventListener("dragleave", () => input.classList.remove("microbrew-drop-hover"));
+  input.addEventListener("drop", async (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+    input.classList.remove("microbrew-drop-hover");
+    const name = await droppedItemName(ev);
+    if (!name) return ui.notifications.warn("Microbrew: drop an Item here to use its name.");
+    input.value = name;
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+}
+
+/** The name of the Item in a drop event, or null. */
+export async function droppedItemName(ev) {
+  let data;
+  try {
+    data = globalThis.TextEditor?.getDragEventData?.(ev) ?? JSON.parse(ev.dataTransfer?.getData("text/plain") || "null");
+  } catch (e) {
+    return null;
+  }
+  if (data?.type !== "Item") return null;
+  if (data.data?.name) return String(data.data.name).trim() || null; // item data dragged directly
+  if (!data.uuid) return null;
+  try {
+    const item = globalThis.fromUuidSync?.(data.uuid) ?? (await fromUuid(data.uuid));
+    return item?.name ? String(item.name).trim() : null;
+  } catch (e) {
+    return null;
+  }
+}

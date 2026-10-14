@@ -83,7 +83,7 @@ Dragging it straight onto a character also works.
 - The brewing dialog tells the DM, as they type, whether a combination is known.
 - Tick **Overwrite known recipe** to re-roll a known combination.
 - Recipes are stored in a world setting. A journal entry, **Microbrew Recipe Book**, shows them as a readable table. It's visible to the DM only by default.
-- **Add a Recipe**: write a recipe by hand. Each effect can be custom text, a roll on any table, or no effect. Hand-made recipes apply to every Keg.
+- **Add a Recipe**: write a recipe by hand. Type each ingredient, or drag an item onto the field (from the Items sidebar, a compendium or a character sheet) to fill in its name; only the name is used. Each effect can be custom text, a roll on any table, or no effect. Hand-made recipes apply to every Keg.
 - **Remove a Recipe** and **Clear Recipe Book** do what they say.
 
 ## What Microbrew changes in your world
@@ -135,7 +135,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.2.0
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.2.1
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.

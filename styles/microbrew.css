@@ -14,3 +14,7 @@ a.microbrew-link i {
   margin-right: 2px;
   color: var(--color-text-dark-inactive, #7a7971);
 }
+input.microbrew-drop-hover {
+  outline: 2px dashed var(--color-border-highlight, #ff6400);
+  outline-offset: 1px;
+}

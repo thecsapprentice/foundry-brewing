@@ -13,6 +13,7 @@ const suites = [
   ["test-module.mjs", {}],
   ["test-reskin.mjs", {}],
   ["test-safety.mjs", {}],
+  ["test-drop.mjs", {}],
   ["test-libwrapper.mjs", { WITH_LIBWRAPPER: "1" }],
   ["test-libwrapper.mjs", { WITH_LIBWRAPPER: "0" }],
 ];

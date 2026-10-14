@@ -1,6 +1,6 @@
 // GM tools: Give a Keg, and Add / Remove / Clear recipes.
 import { KEG_NAME, KEG_IMG, TABLE_NAMES, FLAG_TABLES, FLAG_SKIN, SLOT_LABEL, BREW_ACTIVITY_ID, DRINK_ACTIVITY_ID } from "./constants.mjs";
-import { esc, ingKey, tableRange, rollOn, rollWithExtras, allTables, resolveTable, buttonDialog, readForm, titleCase } from "./util.mjs";
+import { esc, ingKey, tableRange, rollOn, rollWithExtras, allTables, resolveTable, buttonDialog, readForm, titleCase, acceptItemDrop } from "./util.mjs";
 import { newKegData, kegFromTemplate, isKeg, skinOf, kegContents, kegDescription, DEFAULT_SKIN, SKIN_FIELDS } from "./keg.mjs";
 import { getRecipes, setRecipes, slotDisplay } from "./book.mjs";
 
@@ -100,14 +100,15 @@ export async function addRecipe() {
   const content = (prev, error) => `
 <form class="microbrew-add">
   ${error ? `<p class="notification error" style="margin:0 0 6px">${esc(error)}</p>` : ""}
-  <p>Add a recipe by hand. Typing text or entering a roll switches that effect's source automatically.</p>
-  ${[1, 2, 3].map((n) => `<div class="form-group"><label>Ingredient ${n}</label><input type="text" name="ing${n}" value="${val(prev[`ing${n}`])}" ${n === 1 ? "autofocus" : ""}></div>`).join("")}
+  <p>Add a recipe by hand. Type each ingredient, or drag an item onto the field to use its name. Typing text or entering a roll switches that effect's source automatically.</p>
+  ${[1, 2, 3].map((n) => `<div class="form-group"><label>Ingredient ${n}</label><input type="text" name="ing${n}" value="${val(prev[`ing${n}`])}" placeholder="type, or drop an item" ${n === 1 ? "autofocus" : ""}></div>`).join("")}
   <div class="form-group"><label>Recipe name</label><input type="text" name="name" placeholder="(automatic)" value="${val(prev.name)}"></div>
   ${Object.keys(SLOT_LABEL).map((k) => slotFields(k, prev)).join("")}
   <p class="hint">This recipe applies to every Keg and replaces anything already recorded for these three ingredients.</p>
 </form>`;
   const render = (html) => {
     const root = html[0] ?? html;
+    ["ing1", "ing2", "ing3"].forEach((n) => acceptItemDrop(root.querySelector?.(`input[name="${n}"]`)));
     root.querySelectorAll?.("[data-slot]").forEach((el) => {
       const sync = () => {
         const sel = root.querySelector(`select[name="${el.dataset.slot}-mode"]`);
