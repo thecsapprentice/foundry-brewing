@@ -5,7 +5,10 @@ import {
 import {
   esc, textFor, ingKey, tableRange, dieOf, rollOn, rollWithExtras, resolveTable, buttonDialog, readForm, titleCase,
 } from "./util.mjs";
-import { kegContents, kegDescription, drinkActivity, skinOf, countOf } from "./keg.mjs";
+import { kegContents, kegDescription, drinkActivity, skinOf, countOf, isKeg } from "./keg.mjs";
+
+/** Item types that may be used up as ingredients. */
+const INGREDIENT_TYPES = ["loot", "consumable"];
 import { getRecipes, setRecipes } from "./book.mjs";
 
 const tierGood = (v) => (v <= 6 ? "Trivial" : v <= 12 ? "Minor" : v <= 18 ? "Moderate" : v <= 24 ? "Strong" : v <= 29 ? "Major" : "Legendary");
@@ -127,7 +130,7 @@ async function _brew(keg, request) {
   <datalist id="microbrew-inv">${inventory}</datalist>
   ${[1, 2, 3].map((n) => `<div class="form-group"><label>Ingredient ${n}</label><input type="text" name="ing${n}" list="microbrew-inv" value="${val(prev[`ing${n}`])}" ${n === 1 ? "autofocus" : ""}></div>`).join("")}
   <div class="form-group"><label>Consume ingredients</label><input type="checkbox" name="consume" ${prev.consume === undefined || prev.consume ? "checked" : ""}>
-    <p class="hint">Removes one of each ingredient from inventory if an item with that exact name exists.</p></div>
+    <p class="hint">Removes one of each ingredient from inventory if a loot or consumable item with that name exists. Weapons, armor, equipped items and other gear are never touched.</p></div>
   <div class="form-group"><label>Brew name</label><input type="text" name="brewName" placeholder="(automatic)" value="${val(prev.brewName)}"></div>
   <div class="form-group"><label>${esc(cap(skin.portions))}</label><input type="number" name="servings" min="1" max="20" value="${val(prev.servings ?? DEFAULT_SERVINGS)}"></div>
   <hr>
@@ -241,7 +244,10 @@ async function _brew(keg, request) {
   const consumed = [];
   if (data.consume) {
     for (const name of ingredients) {
-      const it = brewer.items.find((i) => i.id !== keg.id && i.name.toLowerCase() === name.toLowerCase());
+      // Only plain goods (loot / consumables) are ever used up: never weapons, armor, features,
+      // spells, equipped items or another Keg, even if their names happen to match.
+      const it = brewer.items.find((i) => i.id !== keg.id && !isKeg(i) && INGREDIENT_TYPES.includes(i.type)
+        && !i.system?.equipped && i.name.toLowerCase() === name.toLowerCase());
       if (!it) continue;
       const qty = Number(it.system?.quantity ?? 1);
       if (qty > 1) await it.update({ "system.quantity": qty - 1 });

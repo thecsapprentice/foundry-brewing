@@ -76,6 +76,26 @@ Dragging it straight onto a character also works.
 - **Add a Recipe**: write a recipe by hand. Each effect can be custom text, a roll on any table, or no effect. Hand-made recipes apply to every Keg.
 - **Remove a Recipe** and **Clear Recipe Book** do what they say.
 
+## What Microbrew changes in your world
+
+Microbrew only changes what's listed here. It uses Foundry's normal document API, so every change goes through Foundry's own validation and permission checks. It never edits database files directly.
+
+| What | When | What changes |
+|---|---|---|
+| **Kegs** (items with Microbrew's Brew activity or Microbrew data) | Brew, drink, reskin, Give a Keg, first-load upgrade | The Keg's own name, icon, price, weight, rarity, description, Brew/Drink activities and `flags.world.microbrew*`. |
+| **Ingredients** | Brewing, only if *Consume ingredients* is ticked | One of each named ingredient is used up: quantity minus 1, or the item is removed at 1. Only **loot** and **consumable** items that aren't equipped and aren't Kegs. Weapons, armor, spells, features and equipped items are never touched. |
+| **Chat** | Requests, brews, drinks, added recipes | New messages, and the status of Microbrew's own request cards. |
+| **Recipe Book** | Brews and recipe edits | A world setting, `microbrew.recipes`, plus a journal entry named *Microbrew Recipe Book*. Microbrew only writes that journal's **"Recipes"** page and leaves any other pages alone. |
+| **World setting** `microbrew.migrationVersion` | First load | Records that the one-time upgrade ran. |
+
+Microbrew never deletes actors, scenes, journals, tables or macros, and never changes permissions.
+
+**Keg detection.** An item counts as a Keg only if it carries Microbrew's Brew activity or Microbrew's data, never by name. A homemade item that happens to be called "Microbrew Keg" is left alone.
+
+**Disabling the module.** Kegs stay as ordinary items with two inert utility activities. Their descriptions show `@Microbrew[...]` as plain text. Re-enabling the module brings everything back.
+
+**Before installing any new module,** make a backup: Foundry's Setup screen → **Worlds** → *Backup* in v12. Ideally, try new versions in a copy of your world first.
+
 ## Upgrading from the macro version
 
 On first load, the module upgrades existing Kegs automatically:
@@ -105,7 +125,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.1.0
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.1.1
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.

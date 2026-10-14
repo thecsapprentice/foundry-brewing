@@ -94,6 +94,7 @@ function registerSocket() {
 /*  Migration from the macro-based version      */
 /* -------------------------------------------- */
 
+
 async function migrate() {
   if (!game.user.isGM || game.user !== game.users.activeGM) return;
   if ((game.settings.get(MODULE_ID, SETTING_MIGRATION) ?? 0) >= MIGRATION_VERSION) return;

@@ -102,9 +102,16 @@ export function kegFromTemplate(template, tableUuids) {
   return data;
 }
 
+/**
+ * Is this a Microbrew Keg? It must carry Microbrew's Brew activity or Microbrew's data.
+ * Never decided by name alone, so a homemade item that happens to be called "Microbrew Keg"
+ * (or a reskinned Keg with any name) is handled correctly.
+ */
 export function isKeg(item) {
   if (!item || item.documentName !== "Item") return false;
-  return !!(item.system?.activities?.get?.(BREW_ACTIVITY_ID) || item.name === KEG_NAME || item.getFlag?.("world", FLAG_TABLES));
+  const w = item.flags?.world ?? {};
+  return !!(item.system?.activities?.get?.(BREW_ACTIVITY_ID) || w[FLAG_TABLES] || w[FLAG_CONTENTS] || w[FLAG_SKIN]
+    || item.flags?.["activity-macro"]?.[BREW_ACTIVITY_ID]);
 }
 
 /** A copy of what is in the Keg (a copy, so later updates to the Keg don't change it). */

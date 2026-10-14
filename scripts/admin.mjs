@@ -57,14 +57,6 @@ export async function giveKeg() {
   const uuids = { good: picked.good, bad: picked.bad, cosmetic: picked.cosmetic };
   const names = (await Promise.all(Object.values(uuids).map((u) => resolveTable(u)))).map((t) => t?.name ?? "?").join(" / ");
 
-  // World tables must be readable by players for the Keg to show results
-  for (const u of new Set(Object.values(uuids))) {
-    const t = await resolveTable(u);
-    if (t && !t.pack && (t.ownership.default ?? 0) < CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER) {
-      await t.update({ "ownership.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER });
-    }
-  }
-
   const given = [], repointed = [], skipped = [];
   for (const a of actors) {
     const kegs = a.items.filter(isKeg);

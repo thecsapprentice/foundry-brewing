@@ -78,7 +78,8 @@ export async function writeRecipePage(recipes) {
   try {
     const book = await ensureBook();
     const content = await recipePage(recipes);
-    const page = book.pages.getName("Recipes") ?? book.pages.contents[0];
+    // Only ever touch the page named "Recipes"; any other pages in the journal are left alone.
+    const page = book.pages.getName("Recipes");
     if (page) await page.update({ "text.content": content });
     else await book.createEmbeddedDocuments("JournalEntryPage", [{ name: "Recipes", type: "text", text: { content } }]);
   } catch (e) {
