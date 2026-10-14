@@ -12,6 +12,7 @@ import { registerBookSettings, migrateLegacyRecipes, getRecipes, writeRecipePage
 import { startBrew, openRequest } from "./brew.mjs";
 import { drink } from "./drink.mjs";
 import { giveKeg, addRecipe, removeRecipe, clearRecipeBook, reskinKeg } from "./admin.mjs";
+import { forage, handleForageSocket, registerForageSettings } from "./forage.mjs";
 
 const SETTING_MIGRATION = "migrationVersion";
 // Icon paths the macro-based version used that don't exist in Foundry's icon set
@@ -79,6 +80,7 @@ async function onLinkClick(event) {
 
 function registerSocket() {
   game.socket.on(SOCKET, async (data) => {
+    if (typeof data?.action === "string" && data.action.startsWith("forage")) return handleForageSocket(data);
     if (data?.action !== "brewRequest") return;
     if (!game.user.isGM || game.user !== game.users.activeGM) return;
     let msg = null;
@@ -131,12 +133,13 @@ async function migrate() {
 
 Hooks.once("init", () => {
   registerBookSettings();
+  registerForageSettings();
   game.settings.register(MODULE_ID, SETTING_MIGRATION, { scope: "world", config: false, type: Number, default: 0 });
   registerEnricher();
   document.addEventListener("click", onLinkClick, true);
 
   game.modules.get(MODULE_ID).api = {
-    giveKeg, addRecipe, removeRecipe, clearRecipeBook, reskinKeg,
+    giveKeg, addRecipe, removeRecipe, clearRecipeBook, reskinKeg, forage,
     brew: (keg) => {
       keg ??= kegOfControlled();
       return keg ? startBrew(keg) : ui.notifications.warn("Microbrew: select a token that carries a Microbrew Keg.");

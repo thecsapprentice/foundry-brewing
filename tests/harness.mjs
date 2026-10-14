@@ -98,7 +98,11 @@ export function installGlobals({ actors, worldItems = [], worldTables = [], user
   };
   globalThis.CONFIG = { TextEditor: { enrichers: [] } };
   globalThis.CONST = { DOCUMENT_OWNERSHIP_LEVELS: { NONE: 0, LIMITED: 1, OBSERVER: 2, OWNER: 3 } };
-  globalThis.foundry = { utils: { deepClone: (o) => structuredClone(o) } };
+  globalThis.foundry = { utils: {
+    deepClone: (o) => structuredClone(o),
+    isNewerVersion: (a, b) => { const x = String(a).split(".").map(Number), y = String(b).split(".").map(Number); for (let i = 0; i < Math.max(x.length, y.length); i++) { if ((x[i] ?? 0) !== (y[i] ?? 0)) return (x[i] ?? 0) > (y[i] ?? 0); } return false; },
+    randomID: () => Math.random().toString(36).slice(2, 18).padEnd(16, "0"),
+  } };
   const listeners = [];
   globalThis.document = {
     addEventListener: (t, f) => listeners.push(f), _listeners: listeners,
@@ -111,10 +115,12 @@ export function installGlobals({ actors, worldItems = [], worldTables = [], user
   globalThis.Dialog = class {
     constructor(o) { this.o = o; }
     static async confirm(o) { const step = dialogQueue.shift(); dialogLog.push({ title: o.title, step: step?.action }); return step?.action === "yes"; }
+    close() { this.o.close?.(); }
     render() {
       const step = dialogQueue.shift();
       if (!step) throw new Error(`Unexpected dialog: ${this.o.title}`);
       dialogLog.push({ title: this.o.title, buttons: Object.values(this.o.buttons).map((b) => b.label), step: step.action, error: /notification error/.test(this.o.content), content: this.o.content });
+      if (step.action === "hold") return this; // stays open until the code closes it
       setTimeout(() => {
         if (step.action === "close") return this.o.close();
         const checkboxes = Object.entries(step.data ?? {}).filter(([, v]) => typeof v === "boolean").map(([name, checked]) => ({ name, checked }));
@@ -151,7 +157,16 @@ export function installGlobals({ actors, worldItems = [], worldTables = [], user
     getIndex: async () => packTables.map((t) => ({ _id: t._id, name: t.name, uuid: t.uuid })),
     getDocument: async (id) => packTables.find((t) => t._id === id),
   };
-  const packs = coll([tablePack]);
+  const packItems = packData.items.filter(([k]) => k.startsWith("!items!")).map(([, v]) => v);
+  const itemPack = {
+    collection: "microbrew.microbrew-items", documentName: "Item", title: "Microbrew: Kegs & Ingredients",
+    getIndex: async ({ fields = [] } = {}) => packItems.map((v) => {
+      const e = { _id: v._id, name: v.name, uuid: `Compendium.microbrew.microbrew-items.Item.${v._id}` };
+      for (const f of fields) { const val = f.split(".").reduce((o, k) => o?.[k], v); if (val !== undefined) { let o = e; const ks = f.split("."); ks.slice(0, -1).forEach((k) => (o = o[k] ??= {})); o[ks.at(-1)] = val; } }
+      return e;
+    }),
+  };
+  const packs = coll([tablePack, itemPack]);
   packs.get = (c) => packs.find((p) => p.collection === c);
   globalThis.fromUuid = async (u) => {
     const parts = u.split(".");
@@ -162,6 +177,7 @@ export function installGlobals({ actors, worldItems = [], worldTables = [], user
   };
   const userList = coll(users);
   globalThis.game = {
+    system: { version: "4.4.0" },
     user: userList[0], users: Object.assign(userList, { get activeGM() { return userList.find((x) => x.isGM && x.active) ?? null; } }),
     actors: coll(actors), items: coll(worldItems), tables, journal, messages, packs,
     modules: new Map([["microbrew", { id: "microbrew" }]]),

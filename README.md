@@ -1,6 +1,6 @@
 # Microbrew
 
-Magical brewing for **Foundry VTT v12** and the **D&D 5e system 4.x**.
+Magical brewing for **Foundry VTT v12** and the **D&D 5e system 4.x** (verified on 4.4.0).
 
 Give a character a **Microbrew Keg**. They drop in three ingredients, the DM fills in the recipe, and the Keg is filled with servings of magic ale. Every serving carries one **Good**, one **Bad** and one **Cosmetic** effect. The same three ingredients always brew the same results, and a **Recipe Book** keeps track.
 
@@ -20,7 +20,7 @@ Then enable **Microbrew** in your world. It requires **[libWrapper](https://foun
 |---|---|
 | **Microbrew: Brewing Tables** | Good Effects (d30), Bad Effects (d30) and Cosmetic Effects (d100). Higher rolls are better on both d30 tables. |
 | **Microbrew: Kegs & Ingredients** | An empty Microbrew Keg, plus herb and plant ingredients in a folder per biome. |
-| **Microbrew: DM Tools** | Macros: Give a Keg, Reskin a Keg, Add a Recipe, Remove a Recipe, Clear Recipe Book, Brew, Drink. |
+| **Microbrew: DM Tools** | Macros: Give a Keg, Reskin a Keg, Forage, Add a Recipe, Remove a Recipe, Clear Recipe Book, Brew, Drink. |
 
 ### Ingredient biomes
 
@@ -48,6 +48,27 @@ Each ingredient is a dnd5e **Material** item with habitat, a Wisdom (Survival) h
   - The **DM** enters three ingredients (type them, pick from the character's inventory, or drag an item onto the field), an optional name, the servings (default 4), and optionally fixed rolls. They can then **Brew!**, **Deny Request** or **Decide Later**.
   - Brewing again pours out what's left.
 - **Drink Brew**: each use pours one serving and posts the three effects to chat. If you select another character's token first, that character drinks from the Keg. When the Keg is empty, the Drink activity disappears.
+
+## Foraging
+
+**Microbrew: Forage** is a DM tool for deciding what characters find in the wild. It never adds anything to an inventory; you decide what they actually get.
+
+1. Select the tokens of the characters who are foraging and run the macro.
+2. Choose the **biome**, **who rolls**, **what is found** and the **bonus step**. Forage remembers your choices.
+3. Each character makes a **Wisdom (Survival)** check using dnd5e's own roll, so proficiency, advantage, Guidance and other effects all apply.
+   - **Ask the player** sends the roll to that character's player. While you wait, you can **Roll for them**, **Enter total** or **Skip**. If no player is online, or they decline or take longer than 5 minutes, you're asked for a total instead.
+   - **I'll roll for them** and **I'll enter the totals** skip the player.
+4. Every ingredient in the biome whose DC the total meets is eligible. The DCs are common 10, uncommon 13, rare 16 and very rare 19.
+5. One ingredient is chosen. The quantity is 1, plus 1 for every *step* points the total beat **that ingredient's** DC (default 5; 0 means always 1). A high roll gives either a few of something better or a lot of something common.
+6. The results are **whispered to you**, with a link for each ingredient. Drag it onto a character sheet to give it, and set the quantity there.
+
+| What is found | How it's chosen |
+|---|---|
+| Weighted toward the best (default) | The highest tier reached is most likely. At 20: very rare 40%, rare 30%, uncommon 20%, common 10%. Then one ingredient at random from that tier. |
+| Any eligible, equally likely | Every eligible ingredient has the same chance, so commons dominate. |
+| Best tier only | Always from the highest tier reached. |
+
+Your own world Items can join in. Give them the flag `flags.world.microbrewIngredient` with a `biome` and either a `dc` or a dnd5e rarity.
 
 ## Reskinning a Keg
 
@@ -94,7 +115,8 @@ Microbrew only changes what's listed here. It uses Foundry's normal document API
 |---|---|---|
 | **Kegs** (items with Microbrew's Brew activity or Microbrew data) | Brew, drink, reskin, Give a Keg, first-load upgrade | The Keg's own name, icon, price, weight, rarity, description, Brew/Drink activities and `flags.world.microbrew*`. |
 | **Ingredients** | Brewing, only if *Consume ingredients* is ticked | One of each named ingredient is used up: quantity minus 1, or the item is removed at 1. Only **loot** and **consumable** items that aren't equipped and aren't Kegs. Weapons, armor, spells, features and equipped items are never touched. |
-| **Chat** | Requests, brews, drinks, added recipes | New messages, and the status of Microbrew's own request cards. |
+| **Chat** | Requests, brews, drinks, added recipes, foraging | New messages, and the status of Microbrew's own request cards. Foraging results are whispered to GMs. A player's Survival roll is posted by dnd5e itself, as any skill roll is. |
+| **Client setting** `microbrew.forageDefaults` | Forage | The DM's last Forage choices, stored in that browser only. |
 | **Recipe Book** | Brews and recipe edits | A world setting, `microbrew.recipes`, plus a journal entry named *Microbrew Recipe Book*. Microbrew only writes that journal's **"Recipes"** page and leaves any other pages alone. |
 | **World setting** `microbrew.migrationVersion` | First load | Records that the one-time upgrade ran. |
 
@@ -119,7 +141,7 @@ Recipes from the old journal-based Recipe Book are moved into the module. You ca
 ## Notes
 
 - **Midi-QOL and other automation:** Microbrew uses libWrapper to take over the Keg's two activities (Brew a Magic Ale, Drink Brew) at the start of the utility activity's `use()`. They never enter dnd5e's or Midi-QOL's usage workflow, so there's no usage card, consumption or targeting to conflict with. Every other activity passes through untouched. If libWrapper registration fails (for example, another module holds an `OVERRIDE` wrapper on the same method), Microbrew falls back to dnd5e's `dnd5e.postUseActivity` hook. The links in the Keg's description always work too.
-- **API:** `game.modules.get("microbrew").api` exposes `giveKeg()`, `reskinKeg(keg?)`, `addRecipe()`, `removeRecipe()`, `clearRecipeBook()`, `brew(keg?)`, `drink(keg?)` and `isKeg(item)`.
+- **API:** `game.modules.get("microbrew").api` exposes `giveKeg()`, `reskinKeg(keg?)`, `forage()`, `addRecipe()`, `removeRecipe()`, `clearRecipeBook()`, `brew(keg?)`, `drink(keg?)` and `isKeg(item)`.
 
 ## Building
 
@@ -135,7 +157,7 @@ git clone --depth 1 --branch 1.23 https://github.com/google/leveldb.git /tmp/lev
 cmake -S /tmp/leveldb -B /tmp/leveldb/build -DCMAKE_BUILD_TYPE=Release -DLEVELDB_BUILD_TESTS=OFF -DLEVELDB_BUILD_BENCHMARKS=OFF
 make -C /tmp/leveldb/build leveldb
 g++ -O2 -std=c++17 -I/tmp/leveldb/include tools/ldbpack.cc /tmp/leveldb/build/libleveldb.a -lpthread -o tools/ldbpack
-python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.2.2
+python3 tools/build.py --repo thecsapprentice/foundry-brewing --version 1.3.0
 ```
 
 The build regenerates `module.json`, `packs/` and `dist/microbrew.zip`. Document ids are derived from names, so they stay stable between builds.

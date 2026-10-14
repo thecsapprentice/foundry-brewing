@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MODULE_ID = "microbrew"
-CORE_VERSION, SYSTEM_VERSION = "12.331", "4.3.9"
+CORE_VERSION, SYSTEM_VERSION = "12.331", "4.4.0"
 STATS = {"coreVersion": CORE_VERSION, "systemId": "dnd5e", "systemVersion": SYSTEM_VERSION,
          "createdTime": None, "modifiedTime": None, "lastModifiedBy": None, "compendiumSource": None, "duplicateSource": None}
 ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -108,7 +108,7 @@ def build_items():
                     "type": {"value": "material", "subtype": ""},
                 },
                 "effects": [], "folder": fid, "sort": 0, "ownership": {"default": 0},
-                "flags": {"world": {"microbrewIngredient": {"biome": B.BIOME, "origin": kind}}}, "_stats": STATS,
+                "flags": {"world": {"microbrewIngredient": {"biome": B.BIOME, "origin": kind, "dc": DC[rarity], "rarity": RARITY_KEY[rarity]}}}, "_stats": STATS,
             }))
     return entries, len(seen)
 
@@ -150,6 +150,8 @@ MACROS = [
      "Forget one recorded recipe."),
     ("Microbrew: Clear Recipe Book", "clearRecipeBook", "icons/sundries/books/book-worn-brown.webp",
      "Forget every recorded recipe."),
+    ("Microbrew: Forage", "forage", "icons/consumables/plants/herb-marjoram-basil-oregano-leaf-bunch-green.webp",
+     "Select the foraging characters' tokens, pick a biome, and each makes a Survival check; what they find is whispered to you."),
     ("Microbrew: Brew", "brew", "icons/consumables/drinks/alcohol-beer-stein-wooden-metal-brown.webp",
      "Brew in the selected token's Keg (players send the DM a request)."),
     ("Microbrew: Drink", "drink", "icons/consumables/drinks/alcohol-beer-stein-wooden-metal-brown.webp",

@@ -8,11 +8,14 @@ CREATE	book.mjs	else await book.createEmbeddedDocuments("JournalEntryPage", [{ n
 CREATE	brew.mjs	await ChatMessage.create({
 CREATE	brew.mjs	const msg = await ChatMessage.create({
 CREATE	drink.mjs	await ChatMessage.create({
+CREATE	forage.mjs	await ChatMessage.create({
 DELETE	book.mjs	await book.update({ [`flags.world.-=${FLAG_LEGACY_RECIPES}`]: null });
 DELETE	brew.mjs	else await it.delete();
 DELETE	brew.mjs	open.delete(keg.uuid);
 DELETE	drink.mjs	if (hasDrink) update[`system.activities.-=${DRINK_ACTIVITY_ID}`] = null;
 DELETE	drink.mjs	update[`flags.world.-=${FLAG_CONTENTS}`] = null;
+DELETE	forage.mjs	openPrompts.delete(data.requestId);
+DELETE	forage.mjs	pending.delete(requestId);
 DELETE	microbrew.mjs	[`flags.activity-macro.-=${BREW_ACTIVITY_ID}`]: null,
 DELETE	microbrew.mjs	[`flags.activity-macro.-=${DRINK_ACTIVITY_ID}`]: null,
 GLOBAL	microbrew.mjs	CONFIG.TextEditor.enrichers.push({
@@ -20,13 +23,19 @@ GLOBAL	microbrew.mjs	document.addEventListener("click", onLinkClick, true);
 GLOBAL	util.mjs	const item = globalThis.fromUuidSync?.(data.uuid) ?? (await fromUuid(data.uuid));
 GLOBAL	util.mjs	data = globalThis.TextEditor?.getDragEventData?.(ev) ?? JSON.parse(ev.dataTransfer?.getData("text/plain") || "null");
 PERMISSION	book.mjs	ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE },
+PERMISSION	forage.mjs	const owners = game.users.filter((u) => u.active && !u.isGM && actor.testUserPermission?.(u, "OWNER"));
 PERMISSION	keg.mjs	delete data.ownership;
 SETTING	book.mjs	await game.settings.set(MODULE_ID, SETTING_RECIPES, current);
 SETTING	book.mjs	await game.settings.set(MODULE_ID, SETTING_RECIPES, recipes);
 SETTING	book.mjs	game.settings.register(MODULE_ID, SETTING_RECIPES, {
+SETTING	forage.mjs	await game.settings.set(MODULE_ID, SETTING_FORAGE, settings);
+SETTING	forage.mjs	game.settings.register(MODULE_ID, SETTING_FORAGE, {
 SETTING	microbrew.mjs	await game.settings.set(MODULE_ID, SETTING_MIGRATION, MIGRATION_VERSION);
 SETTING	microbrew.mjs	game.settings.register(MODULE_ID, SETTING_MIGRATION, { scope: "world", config: false, type: Number, default: 0 });
 SOCKET	brew.mjs	game.socket.emit(SOCKET, { action: "brewRequest", messageId: msg.id });
+SOCKET	forage.mjs	const reply = (r) => game.socket.emit(SOCKET, { action: "forageResult", requestId: data.requestId, actorUuid: data.actorUuid, ...r });
+SOCKET	forage.mjs	game.socket.emit(SOCKET, { action: "forageRoll", requestId, userId: user.id, actorUuid: actor.uuid, biome });
+SOCKET	forage.mjs	if ("dm" in first || first.timedOut) game.socket.emit(SOCKET, { action: "forageCancel", requestId, userId: user.id });
 SOCKET	microbrew.mjs	game.socket.on(SOCKET, async (data) => {
 UPDATE	admin.mjs	await keg.update(update);
 UPDATE	admin.mjs	for (const k of kegs) await k.update({ [`flags.world.${FLAG_TABLES}`]: uuids });
